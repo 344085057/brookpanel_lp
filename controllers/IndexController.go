@@ -15,3 +15,5 @@ func (c *IndexController) Index() {
 	c.setTpl("index/index.html", "shared/layui_page.html")
 
 }
+
+//tj
