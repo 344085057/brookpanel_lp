@@ -4,7 +4,7 @@ type IndexController struct {
 	BaseController
 }
 
-// Index
+// Indexx
 func (c *IndexController) Index() {
 
 	c.Data["title"] = "Brook首页"
@@ -15,5 +15,3 @@ func (c *IndexController) Index() {
 	c.setTpl("index/index.html", "shared/layui_page.html")
 
 }
-
-//tj
