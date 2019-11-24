@@ -1,0 +1,59 @@
+<script>
+
+
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //自定义验证规则
+        form.verify({
+            user: function (value) {
+                if (value.length < 5) {
+                    return '帐号最少5个字符:(';
+                }
+            }
+            , pass: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格:('
+            ]
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            $("#log_btn").attr("class","layui-btn layui-btn-disabled").attr("disabled","disabled")
+            
+            $.ajax({
+                type: "POST",
+                url: '{{urlfor "LoginController.Index"}}',
+                //contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+                data:data.field,
+                dataType: "json",
+                success: function (data) {
+                    if(data.code == 0){
+                        layer.alert(data.msg, {
+                            title: '提交信息',
+                            yes:function(){
+                                setTimeout(function(){location.href= '{{urlfor "UserPanelController.Index"}}'; },500);
+                            }
+                        })
+                        
+                    }else{
+                        layer.alert(data.msg, {
+                            title: '提交信息'
+                        })
+                    }
+                },
+                error: function (e) {
+                    layer.alert("服务器错误，请联系管理员:)", {
+                        title: '提交信息'
+                    })
+                    $("#re_submit_btn").attr("class","layui-btn layui-btn-disabled")
+                }
+            });
+            
+            return false;
+        });
+    })
+</script>

@@ -1,0 +1,18 @@
+<div class="layui-fluid">
+<div class="layui-container" style="height:90%;min-width:1500px;" >
+  <h1>内测版本V 1.0</h1>
+
+  <div class="layui-row"  style="height: 100%;">
+    <div class="layui-col-xs3">
+        <ul class="layui-nav layui-nav-tree layui-inline" style="width: 90%;" lay-filter="demo" style="margin-right: 10px;">
+            <li class="layui-nav-item layui-this"><a href="javascript:;" brookurl = '{{urlfor "UserIndexController.Index"}}'>首页</a></li>
+            <li class="layui-nav-item"><a href="javascript:;" brookurl = '{{urlfor "UserNodeController.Index"}}'>节点列表</a></li>
+          </ul>
+    </div>
+    <div class="layui-col-xs9"  style="height: 100%;">
+      <iframe id="iframeId" src= '{{urlfor "UserIndexController.Index"}}' frameborder="0" style="height:100%; width:100%"></iframe>
+    </div>
+  </div>
+  
+</div>
+</div>
