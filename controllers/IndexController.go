@@ -4,7 +4,7 @@ type IndexController struct {
 	BaseController
 }
 
-// Index
+// Index test
 func (c *IndexController) Index() {
 
 	c.Data["title"] = "Brook首页"
