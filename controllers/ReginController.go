@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"myBrookWeb/enums"
 	"myBrookWeb/models"
+	"strconv"
 	"strings"
 
 	"github.com/astaxie/beego/httplib"
@@ -37,7 +38,9 @@ func (c *ReginController) Index() {
 				UIsAdmin: 0,
 			}
 			//数据库添加
+			var uid int64
 			if id, err := models.AddLpBrookUser(&lpBrookUser); err != nil {
+				uid = id
 				c.jsonResult(enums.JRCodeSucc, "注册异常", id)
 			}
 			//为刚刚注册的用开启服务
@@ -56,9 +59,7 @@ func (c *ReginController) Index() {
 					req.Param("remote_u", sysMap["remote_u"].(string))
 					req.Param("remote_p", sysMap["remote_p"].(string))
 
-					req.Param("uname", username)
-					req.Param("upasswd", userpwd)
-					req.Param("uprot", p)
+					req.Param("uid", strconv.FormatInt(uid, 10))
 					fmt.Println(req.String())
 				}
 			}
