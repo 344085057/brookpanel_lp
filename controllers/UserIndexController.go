@@ -10,6 +10,6 @@ func (c *UserIndexController) Index() {
 	c.LayoutSections = make(map[string]string)
 	c.LayoutSections["headcssjs"] = "userindex/css.html"
 	c.LayoutSections["footerjs"] = "userindex/js.html"
-	c.setTpl("userindex/index.html", "shared/layui_page.html")
+	c.setTpl("userindex/index.html", "shared/public_page.html")
 
 }

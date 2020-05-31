@@ -39,7 +39,7 @@ func (c *LoginController) Index() {
 		c.LayoutSections = make(map[string]string)
 		c.LayoutSections["headcssjs"] = "login/css.html"
 		c.LayoutSections["footerjs"] = "login/js.html"
-		c.setTpl("login/index.html", "shared/layui_page.html")
+		c.setTpl("login/index.html", "shared/public_page.html")
 	}
 
 }

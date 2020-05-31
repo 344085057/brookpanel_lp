@@ -74,7 +74,7 @@ func (c *ReginController) Index() {
 		c.LayoutSections = make(map[string]string)
 		c.LayoutSections["headcssjs"] = "regin/css.html"
 		c.LayoutSections["footerjs"] = "regin/js.html"
-		c.setTpl("regin/index.html", "shared/layui_page.html")
+		c.setTpl("regin/index.html", "shared/public_page.html")
 	}
 
 }

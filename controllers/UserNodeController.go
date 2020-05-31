@@ -16,7 +16,7 @@ func (c *UserNodeController) Index() {
 	c.LayoutSections = make(map[string]string)
 	c.LayoutSections["headcssjs"] = "usernode/css.html"
 	c.LayoutSections["footerjs"] = "usernode/js.html"
-	c.setTpl("usernode/index.html", "shared/layui_page.html")
+	c.setTpl("usernode/index.html", "shared/public_page.html")
 }
 
 func (c *UserNodeController) GetList() {
