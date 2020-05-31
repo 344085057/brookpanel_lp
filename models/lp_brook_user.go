@@ -13,8 +13,8 @@ import (
 
 type LpBrookUser struct {
 	Id       int    `orm:"column(u_id);auto"`
-	UName    string `orm:"column(u_name);size(255)" description:"用户名"`
-	UPasswd  string `orm:"column(u_passwd);size(255)" description:"密码"`
+	UName    string `orm:"column(u_name);size(255)" description:"用户名" valid:"Required;MinSize(6);MaxSize(15)" alias:"用户名"`
+	UPasswd  string `orm:"column(u_passwd);size(255)" description:"密码"  valid:"Required;MinSize(6);MaxSize(15)" alias:"密码"`
 	UProt    string `orm:"column(u_prot);size(255)" description:"端口"`
 	UFlow    string `orm:"column(u_flow);size(255)" description:"流量"`
 	UIsAdmin int    `orm:"column(u_is_admin)" description:"是否是管理员"`

@@ -5,6 +5,7 @@ import (
 	"myBrookWeb/enums"
 	"myBrookWeb/models"
 	"strings"
+
 	//"uman/utils"
 
 	"github.com/astaxie/beego"
@@ -15,12 +16,17 @@ type BaseController struct {
 	controllerName string             //当前控制名称
 	actionName     string             //当前action名称
 	curUser        models.LpBrookUser //当前用户信息
+
+	ip string //ip
 }
 
 func (c *BaseController) Prepare() {
 	//附值
 	c.controllerName, c.actionName = c.GetControllerAndAction()
 	//从Session里获取数据 设置用户信息
+	c.ip = c.Ctx.Input.IP()
+
+	c.Data["active"] = c.controllerName
 	c.adapterUserInfo()
 }
 
@@ -97,4 +103,12 @@ func (c *BaseController) pageLogin() {
 	url := c.URLFor("HomeController.Login")
 	c.Redirect(url, 302)
 	c.StopRun()
+}
+
+// 获取ip
+func (c *BaseController) GetClientIP() string {
+	req := c.Ctx.Request
+	addr := req.RemoteAddr             // "IP:port" "192.168.1.150:8889"
+	ipport := strings.Split(addr, ":") // 切割 "IP:port" "192.168.1.150:8889"
+	return ipport[0]
 }

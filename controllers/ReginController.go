@@ -15,7 +15,7 @@ type ReginController struct {
 	BaseController
 }
 
-// Index
+// 注册
 func (c *ReginController) Index() {
 	if c.Ctx.Request.Method == "POST" {
 		username := strings.TrimSpace(c.GetString("UName"))

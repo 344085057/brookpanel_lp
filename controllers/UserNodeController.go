@@ -10,7 +10,7 @@ type UserNodeController struct {
 	BaseController
 }
 
-// Index
+// 节点列表
 func (c *UserNodeController) Index() {
 	c.Data["title"] = "节点列表-Brook"
 	c.LayoutSections = make(map[string]string)

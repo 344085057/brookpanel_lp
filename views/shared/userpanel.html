@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{.title}}</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <!-- Bootstrap CSS-->
+  <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome CSS-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <!-- Google fonts - Popppins for copy-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
+  <!-- orion icons-->
+  <link rel="stylesheet" href="/static/css/orionicons.css">
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="/static/css/style.default.css" id="theme-stylesheet">
+  <!-- Custom stylesheet - for your changes-->
+  <link rel="stylesheet" href="/static/css/custom.css">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="/static/img/favicon.png?3">
+  <!-- Tweaks for older IEs-->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  {{.headcssjs}}
+  <style>
+    .msg {
+      /* background-color: red; */
+      width: 30%;
+      height: 50%;
+
+      position: absolute;
+      left: 100;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- navbar-->
+  <header class="header">
+    <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow"><a href="#"
+        class="sidebar-toggler text-gray-500 mr-4 mr-lg-5 lead"><i class="fas fa-align-left"></i></a><a
+        href="index.html" class="navbar-brand font-weight-bold text-uppercase text-base">Welcome Brook</a>
+      <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
+        <li class="nav-item">
+          <form id="searchForm" class="ml-auto d-none d-lg-block">
+            <div class="form-group position-relative mb-0">
+              <button type="submit" style="top: -3px; left: 0;" class="position-absolute bg-white border-0 p-0"><i
+                  class="o-search-magnify-1 text-gray text-lg"></i></button>
+              <input type="search" placeholder="Search ..."
+                class="form-control form-control-sm border-0 no-shadow pl-4">
+            </div>
+          </form>
+        </li>
+        <li class="nav-item dropdown mr-3"><a id="notifications" href="http://example.com" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-gray-400 px-1"><i
+              class="fa fa-bell"></i><span class="notification-icon"></span></a>
+          <div aria-labelledby="notifications" class="dropdown-menu"><a href="#" class="dropdown-item">
+              <div class="d-flex align-items-center">
+                <div class="icon icon-sm bg-violet text-white"><i class="fab fa-twitter"></i></div>
+                <div class="text ml-2">
+                  <p class="mb-0">You have 2 followers</p>
+                </div>
+              </div>
+            </a><a href="#" class="dropdown-item">
+              <div class="d-flex align-items-center">
+                <div class="icon icon-sm bg-green text-white"><i class="fas fa-envelope"></i></div>
+                <div class="text ml-2">
+                  <p class="mb-0">You have 6 new messages</p>
+                </div>
+              </div>
+            </a><a href="#" class="dropdown-item">
+              <div class="d-flex align-items-center">
+                <div class="icon icon-sm bg-blue text-white"><i class="fas fa-upload"></i></div>
+                <div class="text ml-2">
+                  <p class="mb-0">Server rebooted</p>
+                </div>
+              </div>
+            </a><a href="#" class="dropdown-item">
+              <div class="d-flex align-items-center">
+                <div class="icon icon-sm bg-violet text-white"><i class="fab fa-twitter"></i></div>
+                <div class="text ml-2">
+                  <p class="mb-0">You have 2 followers</p>
+                </div>
+              </div>
+            </a>
+            <div class="dropdown-divider"></div><a href="#" class="dropdown-item text-center"><small
+                class="font-weight-bold headings-font-family text-uppercase">View all
+                notifications</small></a>
+          </div>
+        </li>
+        <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img
+              src="/static/img/avatar-6.jpg" alt="Jason Doe" style="max-width: 2.5rem;"
+              class="img-fluid rounded-circle shadow"></a>
+          <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong
+                class="d-block text-uppercase headings-font-family">Mark Stephen</strong><small>Web
+                Developer</small></a>
+            <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Settings</a><a href="#"
+              class="dropdown-item">Activity log </a>
+            <div class="dropdown-divider"></div><a href="login.html" class="dropdown-item">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="d-flex align-items-stretch">
+    <div id="sidebar" class="sidebar py-3">
+      <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">MAIN
+      </div>
+      <ul class="sidebar-menu list-unstyled">
+        <li class="sidebar-list-item"><a href='{{urlfor "UserPanelController.Index"}}'
+            class='sidebar-link text-muted {{if eq .active "UserPanelController"}}active{{end}}'><i
+              class="o-home-1 mr-3 text-gray"></i><span>俺的首页</span></a></li>
+        <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i
+              class="o-sales-up-1 mr-3 text-gray"></i><span>俺的使用记录</span></a></li>
+        <li class="sidebar-list-item"><a href='{{urlfor "CommodityController.Index"}}'
+            class='sidebar-link text-muted {{if eq .active "CommodityController"}}active{{end}}'><i
+              class="o-table-content-1 mr-3 text-gray"></i><span>商店</span></a></li>
+        <li class="sidebar-list-item"><a href='{{urlfor "UserUpdateController.Index"}}'
+            class='sidebar-link text-muted {{if eq .active "UserUpdateController"}}active{{end}}'><i
+              class="o-survey-1 mr-3 text-gray"></i><span>修改俺的信息</span></a></li>
+        <li class="sidebar-list-item"><a href='{{urlfor "UserObjComtroller.Index"}}'
+            class='sidebar-link text-muted {{if eq .active "UserObjComtroller"}}active{{end}}'><i
+              class="o-survey-1 mr-3 text-gray"></i><span>俺的工单</span></a></li>
+        
+        <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i
+              class="o-exit-1 mr-3 text-gray"></i><span>俺要退出</span></a></li>
+      </ul>
+      <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">EXTRAS
+      </div>
+      <ul class="sidebar-menu list-unstyled">
+        <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i
+              class="o-database-1 mr-3 text-gray"></i><span>Demo</span></a></li>
+        <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i
+              class="o-imac-screen-1 mr-3 text-gray"></i><span>Demo</span></a></li>
+        <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i
+              class="o-paperwork-1 mr-3 text-gray"></i><span>Demo</span></a></li>
+        <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i
+              class="o-wireframe-1 mr-3 text-gray"></i><span>Demo</span></a></li>
+      </ul>
+    </div>
+
+    {{.LayoutContent}}
+
+    <!-- 信息提示 -->
+    <div class="msg" id='msg'>
+    </div>
+
+</body>
+
+</html>
+
+
+<!-- JavaScript files-->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/vendor/popper.js/umd/popper.min.js"> </script>
+<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="/static/vendor/chart.js/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script src="/static/js/front.js"></script>
+<script>
+  //消息弹窗
+  //str :信息
+  //code: 状态;默认为2;  1成功/2信息/3警告/4错误/5首选/6次要的/7深灰色 
+  var i = 0
+  function msg(str, code) {
+    i++;
+    var mstStateClass = 'alert alert-success alert-dismissible'
+    switch (code) {
+      case 1:
+        mstStateClass = 'alert alert-info alert-dismissible'
+        break;
+      case 2:
+        mstStateClass = 'alert alert-warning alert-dismissible'
+        break;
+      case 3:
+        mstStateClass = 'alert alert-danger alert-dismissible'
+        break;
+      case 4:
+        mstStateClass = 'alert alert-primary alert-dismissible'
+        break;
+      case 5:
+        mstStateClass = 'alert alert-secondary alert-dismissible'
+        break;
+      case 6:
+        mstStateClass = 'alert alert-dark alert-dismissible'
+        break;
+      case 7:
+        mstStateClass = 'alert alert-light alert-dismissible'
+        break;
+
+    }
+    var htmlStr = '<div id="msg_id_' + i + '"  class="' + mstStateClass + '"><button type="button" class="close" data-dismiss="alert"></button>' + str + '</div>'
+    $("#msg").append(htmlStr)
+    removeHtml($("#msg_id_" + i))
+  }
+  //根据dom删除元素
+  function removeHtml(dom) {
+    setTimeout(function () {
+      dom.slideUp(300, function () {
+        dom.remove();
+      });
+    }, 1 * 1000);//延迟5000
+  }
+</script>
+{{.footerjs}}

@@ -28,8 +28,17 @@ func init() {
 	//注册
 	beego.Router("/regin", &controllers.ReginController{}, "*:Index")
 
-	//用户面板 iframe框架
+	//用户面板
 	beego.Router("/user/userpanel", &controllers.UserPanelController{}, "*:Index")
+
+	//商店
+	beego.Router("/user/commodity", &controllers.CommodityController{}, "*:Index")
+
+	//用户更改个人信息
+	beego.Router("/user/userupdate", &controllers.UserUpdateController{}, "*:Index")
+
+	//我的工单
+	beego.Router("/user/obj", &controllers.UserObjComtroller{}, "*:Index")
 
 	//用户首页
 	// iframe框架中的内容
