@@ -58,6 +58,9 @@ brookpanel_lp
 		 nohup ./myBrookWeb &
 ```
 
+6.你需要开始搭建服务端了
+
+https://github.com/pingProMax/brookserver
 
 ###说明
 以上步骤无特殊说明，需必做，否则跑不起来
