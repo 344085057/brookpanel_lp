@@ -34,8 +34,16 @@ var MessageTmpls = map[string]string{
 
 func main() {
 	SetDefaultMessage() //验证信息的初始化定义
+
+	beego.AddFuncMap("iAdd1", iAdd1)
 	beego.Run()
 
+}
+
+//iAdd1 index + 1
+func iAdd1(in int) (out int) {
+	out = in + 1
+	return
 }
 
 func SetDefaultMessage() {
