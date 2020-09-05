@@ -24,9 +24,9 @@
                             <th scope="row">{{$index | iAdd1}}</th> 
                             <td>{{$val.Title}}</td>
                             <td>
-                                {{if eq $val.Type 3}}
-                                    {{$val.Domain}}:{{$.端口}}
-                                {{else if eq $val.Type 4}}
+                                {{if eq $val.Domain ""}}
+                                    {{$val.Ip}}:{{$.端口}}
+                                {{else}}
                                     {{$val.Domain}}:{{$.端口}}
                                 {{end}}
 
