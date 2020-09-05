@@ -11,7 +11,7 @@
  Target Server Version : 50727
  File Encoding         : 65001
 
- Date: 05/09/2020 14:55:31
+ Date: 05/09/2020 17:47:42
 */
 
 SET NAMES utf8mb4;
@@ -134,7 +134,7 @@ CREATE TABLE `lp_brook_user`  (
 -- ----------------------------
 -- Records of lp_brook_user
 -- ----------------------------
-INSERT INTO `lp_brook_user` VALUES (1, 'admin@gmail.com', 'admin', '123456', 12345, 1000.00000, 1, '2020-09-04 19:23:58', 0.00000, 999, '2020-09-05 14:55:13', '2020-08-20 12:03:38', '2020-09-05 14:55:13', 0);
+INSERT INTO `lp_brook_user` VALUES (1, 'admin@gmail.com', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 12345, 1000.00000, 1, '2020-09-04 19:23:58', 0.00000, 999, '2020-09-05 17:47:29', '2020-08-20 12:03:38', '2020-09-05 17:47:29', 0);
 
 -- ----------------------------
 -- Table structure for lp_brook_user_commodity_log
