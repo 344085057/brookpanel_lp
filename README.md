@@ -72,3 +72,11 @@ https://github.com/pingProMax/brookserver
 目前还没有自动删除长期未使用的用户，所以你只需要知道就好
 
 
+### 站在巨人的肩上
+
+BeeGo: https://github.com/astaxie/beego
+Brook: https://github.com/txthinking/brook
+Jquery
+Bootstrap
+Mysql
+Redis
