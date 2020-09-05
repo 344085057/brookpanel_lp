@@ -21,7 +21,7 @@
                     <tbody>
                         {{range $index,$val := .节点}}
                         <tr>
-                            <th scope="row">{{$index | iAdd1}}</th>
+                            <th scope="row">{{$index | iAdd1}}</th> 
                             <td>{{$val.Title}}</td>
                             <td>
                                 {{if eq $val.Type 3}}
