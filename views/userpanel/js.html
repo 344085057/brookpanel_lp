@@ -1,1 +1,36 @@
-<script src="/static/js/charts-home.js"></script>
+<script>
+
+    //充值
+    function recharge(){
+        openLogin()
+        let recharge_card = $("#recharge_card").val()
+        if (recharge_card == ""){
+            msg("请输入充值码:(",2)
+            return 
+        }
+        $.ajax({
+            type: "post",
+            url: '{{urlfor "UserPanelController.Recharge"}}',
+            data: JSON.stringify({"cdk":recharge_card}),
+            headers: {
+                
+            },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(response){
+                if (response.code == 0){
+                    msg("充值成功:)",0)
+                    setTimeout(function(){
+                        window.location.href='{{urlfor "UserPanelController.Index"}}';
+                    },1000)
+                }else{ //失败
+                    msg(response.msg+"-"+response.obj,2)
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown)
+                msg("请求失败，请重新登录:(",3)
+            }
+        });
+    }
+</script>

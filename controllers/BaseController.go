@@ -13,9 +13,11 @@ import (
 
 type BaseController struct {
 	beego.Controller
-	controllerName string             //当前控制名称
-	actionName     string             //当前action名称
-	curUser        models.LpBrookUser //当前用户信息
+	controllerName string              //当前控制名称
+	actionName     string              //当前action名称
+	curUser        *models.LpBrookUser //当前用户信息
+
+	appname string //项目名称
 
 	ip string //ip
 }
@@ -27,6 +29,8 @@ func (c *BaseController) Prepare() {
 	c.ip = c.Ctx.Input.IP()
 
 	c.Data["active"] = c.controllerName
+	c.appname = beego.AppConfig.String("appname")
+
 	c.adapterUserInfo()
 }
 
@@ -49,11 +53,12 @@ func (c *BaseController) checkLogin() {
 	}
 }
 
-//从session里取用户信息
+// //从session里取用户信息
 func (c *BaseController) adapterUserInfo() {
 	a := c.GetSession("user")
 	if a != nil {
-		c.curUser = a.(models.LpBrookUser)
+		user := a.(models.LpBrookUser)
+		c.curUser = &user
 		c.Data["user"] = a
 	}
 }

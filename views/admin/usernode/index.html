@@ -1,0 +1,170 @@
+<div class="page-holder w-100 d-flex flex-wrap">
+
+    <div class="col-lg-12 mt-5 px-xl-5">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aeModal" onclick="add()">添加</button>
+
+        <div class="card">
+            <div class="card-header">
+                <h6 class="text-uppercase mb-0">节点</h6>
+            </div>
+            <div class="card-body">
+                <table data-toggle="table">
+                    <thead>
+                        <tr>
+                            <!-- <th>#</th> -->
+                            <th>ID</th>
+                            <th>标题</th>
+                            <th>ip地址</th>
+                            <th>流量比例</th>
+                            <th>服务器类型</th>
+                            <th>带宽</th>
+                            <th>限速</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{range $index,$val := .节点}}
+                        <tr>
+                            <!-- <th scope="row">{{$index | iAdd1}}</th> -->
+                            <th scope="row">{{$val.Id}}</th>
+                            <td>{{$val.Title}}</td>
+                            <td>{{$val.Ip}}</td>
+                            <td>{{$val.FlowRatio}}</td>
+                            <td> 
+                                {{if eq $val.Type 1}}
+                                Brook
+                                {{else if eq $val.Type 2}}
+                                Socks5
+                                {{else if eq $val.Type 3}}
+                                Ws 
+                                {{else if eq $val.Type 4}}
+                                Wss
+                                {{else}}
+                                未知的服务
+                                {{end}}
+                                
+                            <td>{{$val.Dk}}Mbps</td>
+                            <td>{{$val.Peed}}</td>
+                            <td>
+                                {{if eq $val.State 1}}
+                                 <span class="text-primary">启用</span>
+                                {{else if eq $val.State -1}}
+                                 <span class="text-danger">停用</span>
+                                {{end}}
+        
+                            </td>
+                            <td>
+                                <button type="submit" onclick='edit({{$val}})' class="btn btn-primary">编辑</button>
+                                <button type="submit" onclick='del({{$val.Id}})' class="btn btn-danger">删除</button>
+                            </td>
+                        </tr>
+                        {{end}}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="aeModal" tabindex="-1" aria-labelledby="aeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="aeLabel">添加</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body px-xl-5">
+              <form id="aeForm">
+                <input type="hidden" name="Id" placeholder="title" class="form-control">
+  
+                <div class="form-group">
+                  <label class="form-control-label text-uppercase">IP</label>
+                    <input type="text" name="Ip" placeholder="IP" class="form-control">
+                </div>
+                <div class="line"></div>
+                
+                <div class="form-group">
+                    <label class="form-control-label text-uppercase">标题</label>
+                    <input type="text" name="Title" placeholder="Title" class="form-control">
+                </div>
+                <div class="line"></div>
+                
+                <div class="form-group">
+                    <label class="form-control-label text-uppercase">域名</label>
+                    <input type="text" name="Domain" placeholder="Domain" class="form-control">
+                </div>
+                <div class="line"></div>
+
+                <div class="form-group">
+                    <label class="form-control-label text-uppercase">类型</label>
+                    <select multiple="" name="Type" class="form-control rounded">
+                        <option value="1" selected>Brook</option>
+                        <option value="2" >Socks5</option>
+                        <option value="3" >Ws</option>
+                        <option value="4" >Wss</option>
+                    </select>
+                </div>
+                
+  
+                <div class="form-group">
+                  <label class="form-control-label text-uppercase">流量比例</label>
+                    <input type="number" name="FlowRatio" placeholder="Proportion" class="form-control">
+                </div>
+                <div class="line"></div>
+
+
+                <div class="form-group">
+                    <label class="form-control-label text-uppercase">服务器延迟</label>
+                    <input type="number" name="Delay" placeholder="Ping" class="form-control">
+                </div>
+                <div class="line"></div>
+
+                <div class="form-group">
+                    <label class="form-control-label text-uppercase">带宽(Mbps)</label>
+                    <input type="number" name="Dk" placeholder="Network Bandwidth" class="form-control">
+                </div>
+                <div class="line"></div>
+
+                <div class="form-group">
+                    <label class="form-control-label text-uppercase">限速(s/Mb)</label>
+                    <input type="number" name="Peed" placeholder="Speed Limit" class="form-control">
+                </div>
+                <div class="line"></div>
+
+                <div class="form-group">
+                    <label class="form-control-label text-uppercase">顺序</label>
+                    <input type="number" name="Sx" placeholder="Order" class="form-control">
+                </div>
+                <div class="line"></div>
+  
+  
+                <div class="form-group">
+                    <label class="form-control-label text-uppercase">是否启用</label>
+                    <select multiple="" name="State" class="form-control rounded">
+                      <option value="1" selected>启用</option>
+                      <option value="-1">停用</option>
+                    </select>
+                </div>
+                <div class="line"></div>
+                
+                <div class="form-group">
+                  <label class="form-control-label text-uppercase">描述</label>
+                    <textarea class="form-control" name="Describe" aria-label="With textarea"></textarea>
+                </div>
+                <div class="line"></div>
+  
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="ae()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>

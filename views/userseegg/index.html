@@ -1,0 +1,46 @@
+<div class="page-holder w-100 d-flex flex-wrap">
+  <!-- <div class="row mt-5" style="text-align: center;width: 100%;">
+    <h1 class="">{{.文章.Title}}</h1>
+  </div>
+  <div class="ml-5 mr-5 pl-5 pr-5" style="width: 80%;">
+    {{str2html .文章.Text}}
+  </div> -->
+  
+  
+  <div class="container-fluid px-xl-5">
+    <section class="py-5">
+        <div class="row">
+            
+            <div class="col-xl-12 col-lg-12 mb-4 mb-xl-0">
+                <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                    <div class="flex-grow-1 d-flex align-items-center">
+                        <div class="text" style="text-align: center;width: 100%;">
+                            <h1 class="mb-0">{{.文章.Title}}</h1><span class="text-gray">{{date .文章.CreateTime "Y-m-d H:i:s"}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <section>
+        <div class="row mb-4">
+            <div class="col-lg-12 mb-5 mb-lg-0">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center flex-row">
+                            <div class="col-lg-12">
+                              {{str2html .文章.Text}}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+
+    </section>
+
+  </div>
+ 

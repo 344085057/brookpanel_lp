@@ -3,7 +3,7 @@
     <section class="py-5">
       <div class="row">
         <!-- Basic Form-->
-        <div class="col-lg-6 mb-5">
+        <div class="col-lg-12 mb-5">
           <div class="card">
             <div class="card-header">
               <h3 class="h6 text-uppercase mb-0">修改密码</h3>
@@ -12,15 +12,15 @@
               <p>修改密码的同时会修改服务密码.</p>
               <form>
                 <div class="form-group">
-                  <label class="form-control-label text-uppercase">安全码</label>
-                  <input type="text" placeholder="Security Code" class="form-control">
+                  <label class="form-control-label text-uppercase">老密码</label>
+                  <input type="text" id="passwd" placeholder="Security Code" class="form-control">
                 </div>
                 <div class="form-group">       
                   <label class="form-control-label text-uppercase">新密码</label>
-                  <input type="password" placeholder="Password" class="form-control">
+                  <input type="password" id="newPasswd" placeholder="Password" class="form-control">
                 </div>
                 <div class="form-group">       
-                  <button type="submit" class="btn btn-primary">俺要修改密码～</button>
+                  <button type="button" onclick="UpdataPasswd()" class="btn btn-primary">修改</button>
                 </div>
               </form>
             </div>
@@ -28,86 +28,32 @@
         </div>
 
         <!-- Horizontal Form-->
-        <div class="col-lg-6 mb-5">
+        <!-- <div class="col-lg-6 mb-5">
           <div class="card">
             <div class="card-header">
               <h3 class="h6 text-uppercase mb-0">修改端口</h3>
             </div>
             <div class="card-body">
-              <p>修改服务端口。　5元一次</p>
+              <p>修改服务端口。　{{.updata_port_money}}金币一次</p>
               <form>
-                <div class="form-group">
-                  <label class="form-control-label text-uppercase">安全码</label>
-                  <input type="text" placeholder="Security Code" class="form-control">
-                </div>
+                
                 <div class="form-group">       
                   <label class="form-control-label text-uppercase">新端口</label>
-                  <input type="number" placeholder="Ｐｏｒｔ" class="form-control">
+                  <input type="number" id="port" placeholder="Ｐｏｒｔ" class="form-control">
                 </div>
                 <div class="form-group">       
-                  <button type="submit" class="btn btn-primary">俺要修改端口～</button>
+                  <button type="button" onclick="UpdataPort()" class="btn btn-primary">修改</button>
                 </div>
               </form>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- Horizontal Form-->
         
-        <!-- Inline Form-->
-        <div class="col-lg-6 mb-5">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="h6 text-uppercase mb-0">修改安全码</h3>
-            </div>
-            <div class="card-body">
-              <p>某些操作需要安全码</p>
-              <form class="form-horizontal">
-                <div class="form-group row">
-                  <label class="col-md-3 form-control-label">邮箱</label>
-                  <div class="col-md-9">
-                    <input type="text" readonly class="form-control form-control-success" id="staticEmail" value="email@example.com"><small class="form-text text-muted ml-3">用来接收验证码</small>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-3 form-control-label">验证码</label>
-                  <div class="col-md-9">
-                    <input id="inputHorizontalWarning" type="text" placeholder="Verification Code" class="form-control form-control-warning"><small class="form-text text-muted ml-3">请在你的邮箱中查看验证码</small>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label class="col-sm-3 form-control-label">新的安全码</label>
-                  <div class="col-md-9">
-                    <input id="inputHorizontalWarning" type="password" placeholder="New Security Code" class="form-control form-control-warning"><small class="form-text text-muted ml-3">设置你的新安全码</small>
-                  </div>
-                </div>
-                <div class="form-group row">       
-                  <div class="col-md-9 ml-auto">
-                    <input type="submit" value="俺要修改安全码～" class="btn btn-primary">
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        
+       
         <!-- Modal Form-->
        
       </div>
     </section>
   </div>
-  <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 text-center text-md-left text-primary">
-          <p class="mb-2 mb-md-0">Your company &copy; 2018-2020</p>
-        </div>
-        <div class="col-md-6 text-center text-md-right text-gray-400">
-          <p class="mb-0">Design by <a href="https://bootstrapious.com/admin-templates" class="external text-gray-400">Bootstrapious</a></p>
-          <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-        </div>
-      </div>
-    </div>
-  </footer>
-</div>
-</div>
+ 

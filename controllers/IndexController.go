@@ -7,7 +7,7 @@ type IndexController struct {
 // Index
 func (c *IndexController) Index() {
 
-	c.Data["title"] = "Brook首页"
+	c.Data["title"] = "首页-" + c.appname
 
 	c.LayoutSections = make(map[string]string)
 	c.LayoutSections["headcssjs"] = "index/css.html"

@@ -9,14 +9,21 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
+// LpBrookServer 服务器列表
 type LpBrookServer struct {
-	Id         int     `orm:"column(s_id);auto"`
-	SIp        string  `orm:"column(s_ip);size(255)" description:"ip地址"`
-	SFlowRatio float64 `orm:"column(s_flow_ratio)" description:"流量比例"`
-	STitle     string  `orm:"column(s_title);size(255)" description:"服务标题"`
-	SType      int     `orm:"column(s_type);size(255)" description:"服务器类型"`
-	SDelay     string  `orm:"column(s_delay);size(255)" description:"服务器延迟"`
-	SOrder     int     `orm:"column(s_order);size(255)" description:"顺序"`
+	Id        int     `orm:"column(id);auto"`
+	Ip        string  `orm:"column(ip);size(255)" description:"ip地址"`
+	Domain    string  `orm:"column(domain);size(255)" description:"域名"`
+	FlowRatio float64 `orm:"column(flow_ratio)" description:"流量比例"`
+	Title     string  `orm:"column(title);size(255)" description:"服务标题"`
+	Type      int     `orm:"column(type);size(255)" description:"服务器类型"`
+	Delay     string  `orm:"column(delay);size(255)" description:"服务器延迟"`
+	Dk        int     `orm:"column(dk);size(255)" description:"带宽 Mbps"`
+	Peed      int     `orm:"column(peed);size(255)" description:"限速 s/Mb"`
+	Describe  string  `orm:"column(describe);size(255)" description:"描述"`
+	State     int     `orm:"column(state);" description:"-1:禁用/1:启用 默认启用"`
+	Sx        int     `orm:"column(sx);" description:"顺序"`
+	// TableTime  time.Time `orm:"column(table_time);type(datetime);auto_now" description:"直接修改表的日期"`
 }
 
 // AddLpBrookServer insert a new LpBrookServer into database and returns
@@ -34,6 +41,9 @@ func GetLpBrookServerById(id int) (v *LpBrookServer, err error) {
 	v = &LpBrookServer{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
+	}
+	if err == orm.ErrNoRows { //判断是否 是 没有找到的错误
+		return nil, nil
 	}
 	return nil, err
 }
@@ -147,13 +157,21 @@ func DeleteLpBrookServer(id int) (err error) {
 }
 
 //获取所有可用服务器
-func GetLpBrookAll() (v *[]LpBrookServer, err error) {
+func GetLpBrookAll(state int) (v []LpBrookServer, err error) {
 	o := orm.NewOrm()
-	var lpBrookServer []LpBrookServer
 
-	_, err = o.QueryTable(LpBrookServerTBName()).Exclude("s_type__exact", -1).All(&lpBrookServer)
-	if err == nil {
-		return &lpBrookServer, nil
+	qs := o.QueryTable(LpBrookServerTBName())
+
+	if state != 0 {
+		qs = qs.Filter("state", state)
 	}
-	return nil, err
+	qs.OrderBy("-sx")
+
+	if _, err = qs.All(&v); err == nil {
+		return v, nil
+	}
+	if err != nil {
+		return nil, err
+	}
+	return v, nil
 }

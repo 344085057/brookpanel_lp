@@ -2,13 +2,17 @@
     <div class="container-fluid px-xl-5">
       <section class="py-5">
         <div class="row">
+         
+          
+          {{range $i, $map := .商品}}
+          {{range $key, $val := $map}}
           <div class="col-lg-6 mb-4">
             <div class="card">
               <div class="card-header">
-                <h6 class="text-uppercase mb-0">活动套餐</h6>
+                <h6 class="text-uppercase mb-0">{{$key}}</h6>
               </div>
               <div class="card-body">
-                <table class="table card-text">
+                <table data-toggle="table">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -22,177 +26,36 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {{range $index, $commodity := $val}}
                     <tr>
-                      <th scope="row">1</th>
-                      <td>１天体验</td>
-                      <td>1天</td>
-                      <td>1000Ｍ</td>
-                      <td>覆盖</td>
-                      <td>体验</td>
-                      <td>１ＲＭＢ</td>
-                      <td>购买</td>
+                      <th scope="row">{{$index | iAdd1}}</th>
+                      <td>{{$commodity.Title}}</td>
+                      <td>{{$commodity.Time}}天</td>
+                      <td>{{$commodity.Ll}}MB</td>
+                      <td>
+                        {{if eq $commodity.Cover -1}}
+                          覆盖
+                        {{else if eq $commodity.Cover 1}}
+                          叠加
+                        {{else}}
+                          商品信息异常请勿购买
+                        {{end}}
+                      </td>
+                      <td>{{$commodity.Describe}}</td>
+                      <td>{{$commodity.Money}}</td>
+                      <td><button type="submit" onclick='gm({{$commodity.Id}})' class="btn btn-primary">购买</button></td>
                     </tr>
+                    {{end}}
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-          <div class="col-lg-6 mb-4">
-            <div class="card">
-              <div class="card-header">
-                <h6 class="text-uppercase mb-0">１２３</h6>
-              </div>
-              <div class="card-body">                           
-                <table class="table table-striped card-text">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Username</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter                            </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 mb-4">
-            <div class="card">
-              <div class="card-header">
-                <h6 class="text-uppercase mb-0">高级</h6>
-              </div>
-              <div class="card-body">                           
-                <table class="table table-striped table-hover card-text">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Username</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter                            </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Sam</td>
-                      <td>Nevoresky</td>
-                      <td>@facebook                            </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h6 class="text-uppercase mb-0">包年</h6>
-              </div>
-              <div class="card-body">                          
-                <table class="table table-striped table-sm card-text">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Username</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">4</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">5</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">6</th>
-                      <td>Larry</td>
-                      <td>the Bird</td>
-                      <td>@twitter</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+          {{end}}
+          {{end}}
+         
         </div>
       </section>
+      
     </div>
-    <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6 text-center text-md-left text-primary">
-            <p class="mb-2 mb-md-0">Your company &copy; 2018-2020</p>
-          </div>
-          <div class="col-md-6 text-center text-md-right text-gray-400">
-            <p class="mb-0">Design by <a href="https://bootstrapious.com/admin-templates" class="external text-gray-400">Bootstrapious</a></p>
-            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-</div>
+    

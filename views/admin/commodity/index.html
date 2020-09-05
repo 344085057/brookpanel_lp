@@ -1,0 +1,159 @@
+<div class="page-holder w-100 d-flex flex-wrap">
+    <div class="container-fluid px-xl-5">
+      <section class="py-5">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aeModal" onclick="add()">添加</button>
+
+        <div class="row">
+          
+          {{range $i, $map := .商品}}
+          {{range $key, $val := $map}}
+          <div class="col-lg-12 mb-4">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="text-uppercase mb-0">{{$key}}</h6>
+              </div>
+              <div class="card-body">
+                <table data-toggle="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>商品名称</th>
+                      <th>时长</th>
+                      <th>流量</th>
+                      <th>套餐类型</th>
+                      <th>商品描述</th>
+                      <th>价格</th>
+                      <th>状态</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="table_tbody">
+                    {{range $index, $commodity := $val}}
+                    <tr id="tr_{{$commodity.Id}}">
+                      <th scope="row">{{$index | iAdd1}}</th>
+                      <td>{{$commodity.Title}}</td>
+                      <td>{{$commodity.Time}}天</td>
+                      <td>{{$commodity.Ll}}MB</td>
+                      <td>
+                        {{if eq $commodity.Cover -1}}
+                          覆盖
+                        {{else if eq $commodity.Cover 1}}
+                          叠加
+                        {{else}}
+                          商品信息异常请勿购买
+                        {{end}}
+                      </td>
+                      <td>{{$commodity.Describe}}</td>
+                      <td>{{$commodity.Money}}</td>
+                      <td>
+                        {{if eq $commodity.State 1}}
+                         <span class="text-primary">启用</span>
+                        {{else if eq $commodity.State -1}}
+                         <span class="text-danger">停用</span>
+                        {{end}}
+
+                      </td>
+                      <td>
+                        <button type="submit" onclick='edit({{$commodity}})' class="btn btn-primary">编辑</button>
+                        <button type="submit" onclick='del({{$commodity.Id}})' class="btn btn-danger">删除</button>
+                      </td>
+                    </tr>
+                    {{end}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          {{end}}
+          {{end}}
+         
+        </div>
+      </section>
+      
+    </div>
+    
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="aeModal" tabindex="-1" aria-labelledby="aeLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="aeLabel">添加</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body px-xl-5">
+            <form id="aeForm">
+              <input type="hidden" name="Id" placeholder="title" class="form-control">
+
+              <div class="form-group">
+                <label class="form-control-label text-uppercase">商品名称</label>
+                  <input type="text" name="Title" placeholder="title" class="form-control">
+              </div>
+              <div class="line"></div>
+
+              <div class="form-group">
+                <label class="form-control-label text-uppercase">时长(天)</label>
+                  <input type="number" name="Time" placeholder="Time" class="form-control">
+              </div>
+              <div class="line"></div>
+
+              <div class="form-group">
+                <label class="form-control-label text-uppercase">流量(Mb)</label>
+                <input type="number" name="Ll" placeholder="Flow" class="form-control">
+              </div>
+              <div class="line"></div>
+
+              <div class="form-group">
+                <label class="form-control-label text-uppercase">类别</label>
+                <input type="text" name="Sort" placeholder="Flow" class="form-control">
+              </div>
+              <div class="line"></div>
+
+              <div class="form-group">
+                <label class="form-control-label text-uppercase">类型</label>
+                <select multiple="" name="Cover" class="form-control rounded">
+                  <option value="-1" selected>覆盖</option>
+                  <option value="1">叠加</option>
+                </select>
+              </div>
+              <div class="line"></div>
+
+              <div class="form-group">
+                <label class="form-control-label text-uppercase">是否启用</label>
+                <select multiple="" name="State" class="form-control rounded">
+                  <option value="1" selected>启用</option>
+                  <option value="-1">停用</option>
+                </select>
+              </div>
+              <div class="line"></div>
+
+              <div class="form-group">
+                <label class="form-control-label text-uppercase">价格</label>
+                  <input type="number" name="Money" placeholder="Price" class="form-control">
+              </div>
+              <div class="line"></div>
+
+              <div class="form-group">
+                <label class="form-control-label text-uppercase">顺序</label>
+                  <input type="number" name="Sx" placeholder="Order" class="form-control">
+              </div>
+              <div class="line"></div>
+
+              <div class="form-group">
+                <label class="form-control-label text-uppercase">描述</label>
+                  <textarea class="form-control" name="Describe" aria-label="With textarea"></textarea>
+              </div>
+              <div class="line"></div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="ae()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>

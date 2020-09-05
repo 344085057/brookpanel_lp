@@ -1,0 +1,47 @@
+<!-- <script src="https://www.google.com/recaptcha/api.js"></script> -->
+<script src="https://www.recaptcha.net/recaptcha/api.js" async defer></script>
+
+<script>
+
+    function regin(){
+        openLogin()
+        let grecaptcha_responseToken = grecaptcha.getResponse();
+        console.log(grecaptcha_responseToken)
+        if (grecaptcha_responseToken.length == 0) {
+            msg("请进行人机身份验证", 3) // 警告
+            
+        }
+        
+        var data = $.param({
+        "token" : grecaptcha_responseToken
+        }) + "&" +$('#reginForm').serialize();
+
+        $.ajax({
+            type: "POST",
+            url: '{{urlfor "ReginController.Index"}}',
+            //contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+            data:data,
+            dataType: "json",
+            success: function (data) {
+                if(data.code == 0){
+                    msg(data.msg, 1) // 成功
+                    setTimeout(function(){
+                        window.location.href='{{urlfor "LoginController.Index"}}';
+                    },1000)
+                }else{
+                    msg(data.msg, 3) // 警告
+                    grecaptcha.reset();
+                }
+            },
+            error: function (e) {
+                msg(e, 4) // 错误
+                grecaptcha.reset();
+
+            }
+        });
+    };
+
+
+    </script>
+
+    

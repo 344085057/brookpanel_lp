@@ -8,6 +8,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
@@ -39,14 +40,14 @@ func (c *LoginController) Index() {
 			c.jsonResult(enums.JRCodeFailed, "系统设置错误！", err)
 		}
 
-		username := strings.TrimSpace(c.GetString("UName"))
-		userpwd := strings.TrimSpace(c.GetString("UPasswd"))
+		userEmail := strings.TrimSpace(c.GetString("UEmail"))
+		userPasswd := strings.TrimSpace(c.GetString("UPasswd"))
 
 		// if len(username) == 0 || len(userpwd) == 0 {
 		// 	c.jsonResult(enums.JRCodeFailed, "用户名和密码不正确", s)
 		// }
 		//userpwd = utils.String2md5(userpwd)
-		u := models.LpBrookUser{UName: username, UPasswd: userpwd}
+		u := models.LpBrookUserByLogin{UEmail: userEmail, UPasswd: userPasswd}
 
 		valid := validation.Validation{}
 		b, _ := valid.Valid(&u)
@@ -61,7 +62,7 @@ func (c *LoginController) Index() {
 			// 	log.Println(alias, err.Message)
 			// }
 			filed, _ := st.FieldByName(valid.Errors[0].Field)
-			var alias = filed.Tag.Get("alias")
+			var alias = filed.Tag.Get("description")
 			// log.Println(alias, valid.Errors[0].Message)
 			ipStrArr := append(ipStrArr, ip)
 			utils.SetCache(ip, ipStrArr, loginErrorTimeout)
@@ -73,9 +74,9 @@ func (c *LoginController) Index() {
 			c.jsonResult(enums.JRCodeFailed, msgStr, "")
 		}
 
-		user, err := models.BackendUserOneByUserName(username, userpwd)
+		user, err := models.GetUserOneByEmailAndPasswd(userEmail, userPasswd)
 		if user != nil && err == nil {
-			if user.UIsAdmin == -1 {
+			if user.IsAdmin == -1 {
 				ipStrArr := append(ipStrArr, ip)
 				utils.SetCache(ip, ipStrArr, loginErrorTimeout)
 				msgStr := fmt.Sprintf("用户被禁用，请联系管理员;您还有%s次机会", strconv.Itoa(loginErrorNum-len(ipStrArr)))
@@ -86,6 +87,14 @@ func (c *LoginController) Index() {
 			}
 			//保存用户信息到session
 			c.SetSession("user", *user)
+
+			//插入登入日志
+			userLoginLog := models.LpBrookUserLoginLog{
+				UId:       user.Id,
+				LoginTime: time.Now(),
+				LoginIp:   ip,
+			}
+			models.AddLpBrookUserLoginLog(&userLoginLog)
 
 			//获取用户信息
 			c.jsonResult(enums.JRCodeSucc, "登录成功", "")
@@ -100,7 +109,7 @@ func (c *LoginController) Index() {
 			c.jsonResult(enums.JRCodeFailed, msgStr, "")
 		}
 	} else {
-		c.Data["title"] = "登录-Brook"
+		c.Data["title"] = "登录-" + c.appname
 		c.LayoutSections = make(map[string]string)
 		c.LayoutSections["headcssjs"] = "login/css.html"
 		c.LayoutSections["footerjs"] = "login/js.html"

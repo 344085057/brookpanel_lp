@@ -5,6 +5,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+
 	//_ "github.com/mattn/go-sqlite3"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -32,7 +33,7 @@ func InitDatabase() {
 	case "mysql":
 		dbCharset := beego.AppConfig.String(dbType + "::db_charset")
 		orm.RegisterDataBase(dbAlias, dbType, dbUser+":"+dbPwd+"@tcp("+dbHost+":"+
-			dbPort+")/"+dbName+"?charset="+dbCharset, 30)
+			dbPort+")/"+dbName+"?charset="+dbCharset+"&loc=Local", 30)
 	}
 	//如果是开发模式，则显示命令信息
 	isDev := (beego.AppConfig.String("runmode") == "dev")

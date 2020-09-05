@@ -1,0 +1,73 @@
+<script>
+
+    //UpdataPasswd 修改密码
+    function UpdataPasswd(){
+        openLogin()
+        let passwd = $("#passwd").val()
+        let newPasswd = $("#newPasswd").val()
+        if (passwd == "") {
+            msg("请输入旧密码:(",2)
+            return
+        }
+        if (newPasswd == "") {
+            msg("请输入新密码:(",2)
+            return
+        } 
+        
+
+        $.ajax({
+            type: "post",
+            url: '{{urlfor "UserUpdateController.UpdataPasswd"}}',
+            data: JSON.stringify({"passwd":passwd,"newPasswd":newPasswd}),
+            headers: {
+                
+            },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(response){
+                if (response.code == 0){
+                    msg("修改成功:)",0)
+                }else{ //失败
+                    msg(response.msg+"-"+response.obj,2)
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown)
+                msg("请求失败，请重新登录:(",3)
+            }
+        });
+    }
+
+    //UpdataPort 修改端口
+    function UpdataPort(){
+        let port = $("#port").val()
+        if (port == 0) {
+            msg("请输入端口:(",2)
+            return
+        }
+        
+        
+        $.ajax({
+            type: "post",
+            url: '{{urlfor "UserUpdateController.UpdataPort"}}',
+            data: JSON.stringify({"port":Number(port)}),
+            headers: {
+                
+            },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(response){
+                if (response.code == 0){
+                    msg("修改成功:)",0)
+                }else{ //失败
+                    msg(response.msg+"-"+response.obj,2)
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown)
+                msg("请求失败，请重新登录:(",3)
+            }
+        });
+    }
+
+</script>

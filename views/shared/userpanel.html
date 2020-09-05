@@ -10,10 +10,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="all,follow">
   <!-- Bootstrap CSS-->
-  <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/static/bootstrap-4.5.0/css/bootstrap.min.css">
   <!-- Font Awesome CSS-->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link href="/static/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet">
   <!-- Google fonts - Popppins for copy-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,800">
   <!-- orion icons-->
@@ -32,9 +32,6 @@
   <style>
     .msg {
       /* background-color: red; */
-      width: 30%;
-      height: 50%;
-
       position: absolute;
       left: 100;
       top: 0;
@@ -47,6 +44,12 @@
 </head>
 
 <body>
+  <div id="loading" style="z-index: 1000;position: absolute;width: 100%;height: 100%;background-color: #D3D3D3;opacity:0.5;text-align:center;margin: 0; 
+  padding: 0;display:none;">
+    <div class="spinner-grow" style="width: 3rem; height: 3rem;margin-top:25%;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
 
   <!-- navbar-->
   <header class="header">
@@ -55,16 +58,16 @@
         href="index.html" class="navbar-brand font-weight-bold text-uppercase text-base">Welcome Brook</a>
       <ul class="ml-auto d-flex align-items-center list-unstyled mb-0">
         <li class="nav-item">
-          <form id="searchForm" class="ml-auto d-none d-lg-block">
+          <!-- <form id="searchForm" class="ml-auto d-none d-lg-block">
             <div class="form-group position-relative mb-0">
               <button type="submit" style="top: -3px; left: 0;" class="position-absolute bg-white border-0 p-0"><i
                   class="o-search-magnify-1 text-gray text-lg"></i></button>
               <input type="search" placeholder="Search ..."
                 class="form-control form-control-sm border-0 no-shadow pl-4">
             </div>
-          </form>
+          </form> -->
         </li>
-        <li class="nav-item dropdown mr-3"><a id="notifications" href="http://example.com" data-toggle="dropdown"
+        <!-- <li class="nav-item dropdown mr-3"><a id="notifications" href="http://example.com" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle text-gray-400 px-1"><i
               class="fa fa-bell"></i><span class="notification-icon"></span></a>
           <div aria-labelledby="notifications" class="dropdown-menu"><a href="#" class="dropdown-item">
@@ -100,18 +103,18 @@
                 class="font-weight-bold headings-font-family text-uppercase">View all
                 notifications</small></a>
           </div>
-        </li>
+        </li> -->
         <li class="nav-item dropdown ml-auto"><a id="userInfo" href="http://example.com" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><img
               src="/static/img/avatar-6.jpg" alt="Jason Doe" style="max-width: 2.5rem;"
               class="img-fluid rounded-circle shadow"></a>
-          <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong
+          <!-- <div aria-labelledby="userInfo" class="dropdown-menu"><a href="#" class="dropdown-item"><strong
                 class="d-block text-uppercase headings-font-family">Mark Stephen</strong><small>Web
                 Developer</small></a>
             <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Settings</a><a href="#"
               class="dropdown-item">Activity log </a>
             <div class="dropdown-divider"></div><a href="login.html" class="dropdown-item">Logout</a>
-          </div>
+          </div> -->
         </li>
       </ul>
     </nav>
@@ -124,37 +127,70 @@
       <ul class="sidebar-menu list-unstyled">
         <li class="sidebar-list-item"><a href='{{urlfor "UserPanelController.Index"}}'
             class='sidebar-link text-muted {{if eq .active "UserPanelController"}}active{{end}}'><i
-              class="o-home-1 mr-3 text-gray"></i><span>俺的首页</span></a></li>
-        <li class="sidebar-list-item"><a href="charts.html" class="sidebar-link text-muted"><i
-              class="o-sales-up-1 mr-3 text-gray"></i><span>俺的使用记录</span></a></li>
-        <li class="sidebar-list-item"><a href='{{urlfor "CommodityController.Index"}}'
-            class='sidebar-link text-muted {{if eq .active "CommodityController"}}active{{end}}'><i
-              class="o-table-content-1 mr-3 text-gray"></i><span>商店</span></a></li>
-        <li class="sidebar-list-item"><a href='{{urlfor "UserUpdateController.Index"}}'
-            class='sidebar-link text-muted {{if eq .active "UserUpdateController"}}active{{end}}'><i
-              class="o-survey-1 mr-3 text-gray"></i><span>修改俺的信息</span></a></li>
-        <li class="sidebar-list-item"><a href='{{urlfor "UserObjComtroller.Index"}}'
-            class='sidebar-link text-muted {{if eq .active "UserObjComtroller"}}active{{end}}'><i
-              class="o-survey-1 mr-3 text-gray"></i><span>俺的工单</span></a></li>
+              class="o-home-1 mr-3 text-gray"></i><span>home</span></a></li>
         
-        <li class="sidebar-list-item"><a href="login.html" class="sidebar-link text-muted"><i
-              class="o-exit-1 mr-3 text-gray"></i><span>俺要退出</span></a></li>
+        <li class="sidebar-list-item"><a href='{{urlfor "UserNodeController.Index"}}'
+                class='sidebar-link text-muted {{if eq .active "UserNodeController"}}active{{end}}'><i
+                  class="o-repository-1 mr-3 text-gray"></i><span>节点</span></a></li>
+              
+        <li class="sidebar-list-item"><a href='{{urlfor "UserStatisticsController.Index"}}'
+          class='sidebar-link text-muted {{if eq .active "UserStatisticsController"}}active{{end}}'><i
+            class="o-medical-chart-1 mr-3 text-gray"></i><span>统计</span></a></li>
+
+        
+        <li class="sidebar-list-item">
+          <a href='{{urlfor "UserCommodityController.Index"}}' class='sidebar-link text-muted {{if eq .active "UserCommodityController"}}active{{end}}'>
+            <i class="o-table-content-1 mr-3 text-gray"></i><span>商品</span>
+          </a>
+        </li>
+
+        <li class="sidebar-list-item">
+          <a href='{{urlfor "UserUpdateController.Index"}}' class='sidebar-link text-muted {{if eq .active "UserUpdateController"}}active{{end}}'>
+            <i class="o-contact-card-1 mr-3 text-gray"></i><span>修改信息</span>
+          </a>
+        </li>
+        
+              
+        <li class="sidebar-list-item"><a href='{{urlfor "UserUpdateController.Logout"}}' class="sidebar-link text-muted"><i
+              class="o-exit-1 mr-3 text-gray"></i><span>退出登录</span></a></li>
       </ul>
-      <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">EXTRAS
+
+      {{if eq .user.IsAdmin 1}}
+      <div class="text-gray-400 text-uppercase px-3 px-lg-4 py-4 font-weight-bold small headings-font-family">ADMIN
       </div>
       <ul class="sidebar-menu list-unstyled">
-        <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i
-              class="o-database-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-        <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i
-              class="o-imac-screen-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-        <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i
-              class="o-paperwork-1 mr-3 text-gray"></i><span>Demo</span></a></li>
-        <li class="sidebar-list-item"><a href="#" class="sidebar-link text-muted"><i
-              class="o-wireframe-1 mr-3 text-gray"></i><span>Demo</span></a></li>
+        <li class="sidebar-list-item">
+          <a href='{{urlfor "AdminUserNodeController.Index"}}' class='sidebar-link text-muted {{if eq .active "AdminUserNodeController"}}active{{end}}'><i class="o-wifi-router-1 mr-3 text-gray"></i><span>节点管理</span></a>
+        </li>
+        <li class="sidebar-list-item"><a href='{{urlfor "AdminCommodityController.Index"}}' class='sidebar-link text-muted {{if eq .active "AdminCommodityController"}}active{{end}}'><i class="o-paperwork-1 mr-3 text-gray"></i><span>商品管理</span></a></li>
+        <li class="sidebar-list-item"><a href='{{urlfor "AdminUserController.Index"}}' class='sidebar-link text-muted {{if eq .active "AdminUserController"}}active{{end}}'><i class="o-user-details-1 mr-3 text-gray"></i><span>用户管理</span></a></li>
+        <li class="sidebar-list-item"><a href='{{urlfor "AdminMoneycdkController.Index"}}' class='sidebar-link text-muted {{if eq .active "AdminMoneycdkController"}}active{{end}}'><i class="o-stack-1 mr-3 text-gray"></i><span>充值卡管理</span></a></li>
+        <li class="sidebar-list-item"><a href='{{urlfor "AdminLoginLogController.Index"}}' class='sidebar-link text-muted {{if eq .active "AdminLoginLogController"}}active{{end}}'><i class="o-survey-1 mr-3 text-gray"></i><span>用户登录日志</span></a></li>
       </ul>
+      {{end}}
     </div>
 
     {{.LayoutContent}}
+    {{if .err}}
+    错误信息:{{.err}}
+    {{end}}
+
+    <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-6 text-center text-md-left text-primary">
+                  <p class="mb-2 mb-md-0">Brook &copy; 2018-2020</p>
+              </div>
+              <div class="col-md-6 text-center text-md-right text-gray-400">
+                  <p class="mb-0">Design by <a href="http://brook.ws"
+                          class="external text-gray-400">Brook</a></p>
+                  <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+              </div>
+          </div>
+      </div>
+  </footer>
+</div>
+</div>
 
     <!-- 信息提示 -->
     <div class="msg" id='msg'>
@@ -162,13 +198,15 @@
 
 </body>
 
+
 </html>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="/static/vendor/jquery/jquery.min.js"></script>
+<script src="/static/bootstrap-4.5.0/js/bootstrap.min.js"></script>
 
 
 <!-- JavaScript files-->
-<script src="/static/vendor/jquery/jquery.min.js"></script>
-<script src="/static/vendor/popper.js/umd/popper.min.js"> </script>
-<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="/static/vendor/jquery.cookie/jquery.cookie.js"> </script>
 <script src="/static/vendor/chart.js/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
@@ -179,29 +217,30 @@
   //code: 状态;默认为2;  1成功/2信息/3警告/4错误/5首选/6次要的/7深灰色 
   var i = 0
   function msg(str, code) {
+    closeLogin()
     i++;
     var mstStateClass = 'alert alert-success alert-dismissible'
     switch (code) {
       case 1:
-        mstStateClass = 'alert alert-info alert-dismissible'
+        mstStateClass = 'alert alert-info alert-dismissible' //信息
         break;
       case 2:
-        mstStateClass = 'alert alert-warning alert-dismissible'
+        mstStateClass = 'alert alert-warning alert-dismissible'//警告
         break;
       case 3:
-        mstStateClass = 'alert alert-danger alert-dismissible'
+        mstStateClass = 'alert alert-danger alert-dismissible'//危险
         break;
       case 4:
-        mstStateClass = 'alert alert-primary alert-dismissible'
+        mstStateClass = 'alert alert-primary alert-dismissible' //主要的;最重要的;基本的;最初的;最早的
         break;
       case 5:
-        mstStateClass = 'alert alert-secondary alert-dismissible'
+        mstStateClass = 'alert alert-secondary alert-dismissible' //次要的;
         break;
       case 6:
-        mstStateClass = 'alert alert-dark alert-dismissible'
+        mstStateClass = 'alert alert-dark alert-dismissible' //黑暗的
         break;
       case 7:
-        mstStateClass = 'alert alert-light alert-dismissible'
+        mstStateClass = 'alert alert-light alert-dismissible' //光 
         break;
 
     }
@@ -217,5 +256,54 @@
       });
     }, 1 * 1000);//延迟5000
   }
+
+  //开启加载中
+  function openLogin(){
+    $("#loading").css({"display":""})
+  }
+  //关闭加载中
+  function closeLogin(){
+    $("#loading").css({"display":"none"})
+  }
+
+
+  function serializeArrayToObj(arr){
+    var values = {};
+    for (var item in arr) {
+      values[arr[item].name] = arr[item].value;
+    }
+    return values
+  }
+
+  function f5(){
+    location.replace(location.href);
+  }
+
+
+  //对象填充表单
+  function formDataLoad(domId, obj) {
+        for (var property in obj) {
+            if (obj.hasOwnProperty(property) == true) {
+                $("#" + domId + " [name='" + property + "']").each(function () {
+                    var dom = this;
+                    if ($(dom).attr("type") == "radio") {
+                        $(dom).filter("[value='" + obj[property] + "']").attr("checked", true);
+                    }
+                    if ($(dom).attr("type") == "checkbox") {
+                        obj[property] == true ? $(dom).attr("checked", "checked") : $(dom).attr("checked", "checked").removeAttr("checked");
+                    }
+                    if ($(dom).attr("type") == "text" || $(dom).attr("type") == "number" || $(dom).prop("tagName") == "SELECT" || $(dom).attr("type") == "hidden" || $(dom).attr("type") == "textarea") {
+                        $(dom).val(obj[property]);
+                    }
+                    if($(dom).attr("type") == "datetime-local"){
+                        $(dom).val(obj[property].split(":")[0]+":"+obj[property].split(":")[1]);
+                    }
+                    if ($(dom).prop("tagName") == "TEXTAREA") {
+                        $(dom).val(obj[property]);
+                    }
+                });
+            }
+        }
+    }
 </script>
 {{.footerjs}}

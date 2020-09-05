@@ -1,1 +1,57 @@
-<table class="layui-hide" id="test" lay-filter="test"></table>
+<div class="page-holder w-100 d-flex flex-wrap">
+
+    <div class="col-lg-12 mt-5 px-xl-5">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="text-uppercase mb-0">节点</h6>
+            </div>
+            <div class="card-body">
+                <table data-toggle="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>标题</th>
+                            <th>地址</th>
+                            <th>流量比例</th>
+                            <th>服务器类型</th>
+                            <th>带宽</th>
+                            <th>限速</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{range $index,$val := .节点}}
+                        <tr>
+                            <th scope="row">{{$index | iAdd1}}</th>
+                            <td>{{$val.Title}}</td>
+                            <td>
+                                {{if eq $val.Type 3}}
+                                    {{$val.Domain}}:{{$.端口}}
+                                {{else if eq $val.Type 4}}
+                                    {{$val.Domain}}:{{$.端口}}
+                                {{end}}
+
+                            </td>
+                            <td>{{$val.FlowRatio}}</td>
+                            <td> 
+                                {{if eq $val.Type 1}}
+                                Brook
+                                {{else if eq $val.Type 2}}
+                                Socks5
+                                {{else if eq $val.Type 3}}
+                                Ws 
+                                {{else if eq $val.Type 4}}
+                                Wss
+                                {{else}}
+                                未知的服务
+                                {{end}}
+                                
+                            <td>{{$val.Dk}}Mbps</td>
+                            <td>{{$val.Peed}}</td>
+                        </tr>
+                        {{end}}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

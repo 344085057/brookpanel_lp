@@ -1,6 +1,7 @@
 <script>
 
 function login(){
+    openLogin()
     $.ajax({
                 type: "POST",
                 url: '{{urlfor "LoginController.Index"}}',

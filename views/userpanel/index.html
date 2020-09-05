@@ -1,46 +1,47 @@
-
-
-
-
-
-    <div class="page-holder w-100 d-flex flex-wrap">
-        <div class="container-fluid px-xl-5">
-            <section class="py-5">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
+<div class="page-holder w-100 d-flex flex-wrap">
+    <div class="container-fluid px-xl-5">
+        <section class="py-5">
+            <div class="row">
+                <!-- <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
                         <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
                             <div class="flex-grow-1 d-flex align-items-center">
                                 <div class="dot mr-3 bg-violet"></div>
                                 <div class="text">
-                                    <h6 class="mb-0">总使用量</h6><span class="text-gray">145,14 GB</span>
+                                    <h6 class="mb-0">当前设备在线数</h6><span class="text-gray">1 台设备</span>
                                 </div>
                             </div>
                             <div class="icon text-white bg-violet"><i class="fas fa-server"></i></div>
                         </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
-                        <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
-                            <div class="flex-grow-1 d-flex align-items-center">
-                                <div class="dot mr-3 bg-green"></div>
-                                <div class="text">
-                                    <h6 class="mb-0">已充值</h6><span class="text-gray">32 $</span>
-                                </div>
+                    </div> -->
+                <div class="col-xl-6 col-lg-6 mb-4 mb-xl-0">
+                    <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                        <div class="flex-grow-1 d-flex align-items-center">
+                            <div class="dot mr-3 bg-green"></div>
+                            <div class="text">
+                                <h6 class="mb-0">
+                                    金币 
+                                    <span class="ml-5">充值码：<input type="text" id="recharge_card"></span>
+                                    <button onclick="recharge()">充值</button>
+                                </h6> 
+                                <span class="text-gray">{{.user_info.Money}} $</span>
                             </div>
-                            <div class="icon text-white bg-green"><i class="far fa-clipboard"></i></div>
                         </div>
+                        <div class="icon text-white bg-green"><i class="far fa-clipboard"></i></div>
                     </div>
-                    <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
-                        <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
-                            <div class="flex-grow-1 d-flex align-items-center">
-                                <div class="dot mr-3 bg-blue"></div>
-                                <div class="text">
-                                    <h6 class="mb-0">VIP到期时间</h6><span class="text-gray">2019-01-31</span>
-                                </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 mb-4 mb-xl-0">
+                    <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
+                        <div class="flex-grow-1 d-flex align-items-center">
+                            <div class="dot mr-3 bg-blue"></div>
+                            <div class="text">
+                                <h6 class="mb-0">VIP到期时间</h6><span
+                                    class="text-gray">{{date .user_info.ExpireTime "Y-m-d H:i:s"}}</span>
                             </div>
-                            <div class="icon text-white bg-blue"><i class="fa fa-dolly-flatbed"></i></div>
                         </div>
+                        <div class="icon text-white bg-blue"><i class="fa fa-dolly-flatbed"></i></div>
                     </div>
-                    <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
+                </div>
+                <!-- <div class="col-xl-3 col-lg-6 mb-4 mb-xl-0">
                         <div class="bg-white shadow roundy p-4 h-100 d-flex align-items-center justify-content-between">
                             <div class="flex-grow-1 d-flex align-items-center">
                                 <div class="dot mr-3 bg-red"></div>
@@ -50,309 +51,105 @@
                             </div>
                             <div class="icon text-white bg-red"><i class="fas fa-receipt"></i></div>
                         </div>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div class="row mb-4">
-                    <div class="col-lg-7 mb-4 mb-lg-0">
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="h6 text-uppercase mb-0">流量使用情况</h2>
-                            </div>
-                            <div class="card-body">
-                                <p class="text-gray">最近1小时</p>
-                                <div class="chart-holder">
-                                    <canvas id="lineChart1" style="max-height: 14rem !important;"
-                                        class="w-100"></canvas>
+                    </div> -->
+            </div>
+        </section>
+        <section>
+            <div class="row mb-4">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center flex-row">
+                                <div class="col-lg-12">
+                                    <h2 class="mb-0 d-flex align-items-center"><span>{{.user_info.Flow}} MB</span><span
+                                            class="dot bg-violet d-inline-block ml-3"></span></h2><span
+                                        class="text-muted text-uppercase small">剩余流量</span>
+                                    <hr><small class="text-muted"><a href='{{urlfor "UserCommodityController.Index"}}'>购买套餐</a></small>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 mb-4 mb-lg-0 pl-lg-0">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="row align-items-center flex-row">
-                                    <div class="col-lg-5">
-                                        <h2 class="mb-0 d-flex align-items-center"><span>86.4 GB</span><span
-                                                class="dot bg-green d-inline-block ml-3"></span></h2><span
-                                            class="text-muted text-uppercase small">已使用流量</span>
-                                        <hr><small class="text-muted">充值</small>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <canvas id="pieChartHome1"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center flex-row">
-                                    <div class="col-lg-5">
-                                        <h2 class="mb-0 d-flex align-items-center"><span>1.724GB</span><span
-                                                class="dot bg-violet d-inline-block ml-3"></span></h2><span
-                                            class="text-muted text-uppercase small">剩余流量</span>
-                                        <hr><small class="text-muted">充值</small>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <canvas id="pieChartHome2"></canvas>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                
-            </section>
-            <section class="py-5">
-                <div class="row text-dark">
-                    <div class="col-lg-4 mb-4 mb-lg-0">
-                        <div class="card rounded credit-card bg-hover-gradient-violet">
-                            <div class="content d-flex flex-column justify-content-between p-4">
-                                <h1 class="mb-5"><i class="fab fa-cc-visa"></i></h1>
-                                <div class="d-flex justify-content-between align-items-end pt-3">
-                                    <div class="text-uppercase">
-                                        <div class="font-weight-bold d-block">Card Number</div><small
-                                            class="text-gray">1245 1478 1362 6985</small>
-                                    </div>
-                                    <h4 class="mb-0">$417.78</h4>
+
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center flex-row">
+                                <div class="col-lg-12">
+                                    <h2 class="mb-0 d-flex align-items-center"><span>{{.剩余使用时间}}</span><span
+                                            class="dot bg-green d-inline-block ml-3"></span></h2><span
+                                        class="text-muted text-uppercase small">剩余使用时间</span>
+                                    <hr><small class="text-muted"><a href='{{urlfor "UserCommodityController.Index"}}'>购买套餐</a></small>
                                 </div>
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 mb-4 mb-lg-0">
-                        <div class="card rounded credit-card bg-hover-gradient-blue">
-                            <div class="content d-flex flex-column justify-content-between p-4">
-                                <h1 class="mb-5"><i class="fab fa-cc-mastercard"></i></h1>
-                                <div class="d-flex justify-content-between align-items-end pt-3">
-                                    <div class="text-uppercase">
-                                        <div class="font-weight-bold d-block">Card Number</div><small
-                                            class="text-gray">1245 1478 1362 6985</small>
-                                    </div>
-                                    <h4 class="mb-0">$124.17</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4 mb-lg-0">
-                        <div class="card rounded credit-card bg-hover-gradient-green">
-                            <div class="content d-flex flex-column justify-content-between p-4">
-                                <h1 class="mb-5"><i class="fab fa-cc-discover"></i></h1>
-                                <div class="d-flex justify-content-between align-items-end pt-3">
-                                    <div class="text-uppercase">
-                                        <div class="font-weight-bold d-block">Card Number</div><small
-                                            class="text-gray">1245 1478 1362 6985</small>
-                                    </div>
-                                    <h4 class="mb-0">$568.00</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card mb-5 mb-lg-0">
-                            <div class="card-header">
-                                <h2 class="h6 mb-0 text-uppercase">使用教程</h2>
-                            </div>
-                            <div class="card-body">
-                                <p class="text-gray mb-5">点击学习吧:)</p>
-                                <div class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
-                                    <div class="left d-flex align-items-center">
-                                        <div class="icon icon-lg shadow mr-3 text-gray"><i class="fab fa-dropbox"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h6 class="mb-0 d-flex align-items-center"> <span>Dropbox Inc.</span><span
-                                                    class="dot dot-sm ml-2 bg-violet"></span></h6><small
-                                                class="text-gray">Account renewal</small>
-                                        </div>
-                                    </div>
-                                    <div class="right ml-5 ml-sm-0 pl-3 pl-sm-0 text-violet">
-                                        <h5>-$20</h5>
-                                    </div>
-                                </div>
-                                <div
-                                    class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
-                                    <div class="left d-flex align-items-center">
-                                        <div class="icon icon-lg shadow mr-3 text-gray"><i class="fab fa-apple"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h6 class="mb-0 d-flex align-items-center"> <span>App Store.</span><span
-                                                    class="dot dot-sm ml-2 bg-green"></span></h6><small
-                                                class="text-gray">Software cost</small>
-                                        </div>
-                                    </div>
-                                    <div class="right ml-5 ml-sm-0 pl-3 pl-sm-0 text-green">
-                                        <h5>-$20</h5>
-                                    </div>
-                                </div>
-                                <div
-                                    class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
-                                    <div class="left d-flex align-items-center">
-                                        <div class="icon icon-lg shadow mr-3 text-gray"><i
-                                                class="fas fa-shopping-basket"></i></div>
-                                        <div class="text">
-                                            <h6 class="mb-0 d-flex align-items-center"> <span>Supermarket.</span><span
-                                                    class="dot dot-sm ml-2 bg-blue"></span></h6><small
-                                                class="text-gray">Shopping</small>
-                                        </div>
-                                    </div>
-                                    <div class="right ml-5 ml-sm-0 pl-3 pl-sm-0 text-blue">
-                                        <h5>-$20</h5>
-                                    </div>
-                                </div>
-                                <div
-                                    class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
-                                    <div class="left d-flex align-items-center">
-                                        <div class="icon icon-lg shadow mr-3 text-gray"><i class="fab fa-android"></i>
-                                        </div>
-                                        <div class="text">
-                                            <h6 class="mb-0 d-flex align-items-center"> <span>Play Store.</span><span
-                                                    class="dot dot-sm ml-2 bg-red"></span></h6><small
-                                                class="text-gray">Software cost</small>
-                                        </div>
-                                    </div>
-                                    <div class="right ml-5 ml-sm-0 pl-3 pl-sm-0 text-red">
-                                        <h5>-$20</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card mb-5 mb-lg-0">
-                            <div class="card-header">
-                                <h2 class="h6 mb-0 text-uppercase">客服</h2>
-                            </div>
-                            <div class="card-body">
-                                <p class="text-gray mb-5">来问问吧:)</p>
-                               
-                                    <div class="row">
-                                        <div class="col-lg-12"><a href="#"
-                                                class="message card px-5 py-3 mb-4 bg-hover-gradient-primary no-anchor-style">
-                                                <div class="row">
-                                                    <div
-                                                        class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                                                        <strong class="h5 mb-0">24<sup
-                                                                class="smaller text-gray font-weight-normal">Apr</sup></strong><img
-                                                            src="/static/img/avatar-1.jpg" alt="..." style="max-width: 3rem"
-                                                            class="rounded-circle mx-3 my-2 my-lg-0">
-                                                        <h6 class="mb-0">Jason Maxwell</h6>
-                                                    </div>
-                                                    <div
-                                                        class="col-lg-9 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                                                        <div
-                                                            class="roundy px-4 py-1 mr-0 mr-lg-3 mt-2 mt-lg-0  ">
-                                                            </div>
-                                                        <p class="mb-0 mt-3 mt-lg-0">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                            elit, sed do eiusmod tempor.</p>
-                                                    </div>
-                                                </div>
-                                            </a></div>
-                                        <div class="col-lg-12"><a href="#"
-                                                class="message card px-5 py-3 mb-4 bg-hover-gradient-primary no-anchor-style">
-                                                <div class="row">
-                                                    <div
-                                                        class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                                                        <strong class="h5 mb-0">24<sup
-                                                                class="smaller text-gray font-weight-normal">Nov</sup></strong><img
-                                                            src="/static/img/avatar-2.jpg" alt="..." style="max-width: 3rem"
-                                                            class="rounded-circle mx-3 my-2 my-lg-0">
-                                                        <h6 class="mb-0">Sam Andy</h6>
-                                                    </div>
-                                                    <div
-                                                        class="col-lg-9 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                                                        <div
-                                                        class="roundy px-4 py-1 mr-0 mr-lg-3 mt-2 mt-lg-0  ">
-                                                        </div>
-                                                        <p class="mb-0 mt-3 mt-lg-0">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                            elit..</p>
-                                                    </div>
-                                                </div>
-                                            </a></div>
-                                        <div class="col-lg-12"><a href="#"
-                                                class="message card px-5 py-3 mb-4 bg-hover-gradient-primary no-anchor-style">
-                                                <div class="row">
-                                                    <div
-                                                        class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                                                        <strong class="h5 mb-0">17<sup
-                                                                class="smaller text-gray font-weight-normal">Aug</sup></strong><img
-                                                            src="/static/img/avatar-3.jpg" alt="..." style="max-width: 3rem"
-                                                            class="rounded-circle mx-3 my-2 my-lg-0">
-                                                        <h6 class="mb-0">Margret Peter</h6>
-                                                    </div>
-                                                    <div
-                                                        class="col-lg-9 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                                                        <div
-                                                            class="roundy px-4 py-1 mr-0 mr-lg-3 mt-2 mt-lg-0  ">
-                                                            </div>
-                                                        <p class="mb-0 mt-3 mt-lg-0">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                            elit..</p>
-                                                    </div>
-                                                </div>
-                                            </a></div>
-                                        <div class="col-lg-12"><a href="#"
-                                                class="message card px-5 py-3 mb-4 bg-hover-gradient-primary no-anchor-style">
-                                                <div class="row">
-                                                    <div
-                                                        class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                                                        <strong class="h5 mb-0">15<sup
-                                                                class="smaller text-gray font-weight-normal">Sep</sup></strong><img
-                                                            src="/static/img/avatar-4.jpg" alt="..." style="max-width: 3rem"
-                                                            class="rounded-circle mx-3 my-2 my-lg-0">
-                                                        <h6 class="mb-0">Jason Doe</h6>
-                                                    </div>
-                                                    <div
-                                                        class="col-lg-9 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
-                                                        <div
-                                                            class="roundy px-4 py-1 mr-0 mr-lg-3 mt-2 mt-lg-0  ">
-                                                            </div>
-                                                        <p class="mb-0 mt-3 mt-lg-0">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                            elit..</p>
-                                                    </div>
-                                                </div>
-                                            </a></div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-          
-        </div>
-        <footer class="footer bg-white shadow align-self-end py-3 px-xl-5 w-100">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-left text-primary">
-                        <p class="mb-2 mb-md-0">Your company &copy; 2018-2020</p>
-                    </div>
-                    <div class="col-md-6 text-center text-md-right text-gray-400">
-                        <p class="mb-0">Design by <a href="https://bootstrapious.com/admin-templates"
-                                class="external text-gray-400">Bootstrapious</a></p>
-                        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
                     </div>
                 </div>
             </div>
-        </footer>
-    </div>
-</div>
-<!-- <div class="layui-fluid">
-<div class="layui-container" style="height:90%;min-width:1500px;" >
-  <h1>内测版本V 1.0</h1>
 
-  <div class="layui-row"  style="height: 100%;">
-    <div class="layui-col-xs3">
-        <ul class="layui-nav layui-nav-tree layui-inline" style="width: 90%;" lay-filter="demo" style="margin-right: 10px;">
-            <li class="layui-nav-item layui-this"><a href="javascript:;" brookurl = '{{urlfor "UserIndexController.Index"}}'>首页</a></li>
-            <li class="layui-nav-item"><a href="javascript:;" brookurl = '{{urlfor "UserNodeController.Index"}}'>节点列表</a></li>
-          </ul>
+        </section>
+
+        <section>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-header">
+                            <h2 class="h6 mb-0 text-uppercase">使用教程</h2>
+                        </div>
+                        <div class="card-body">
+                            {{range $key, $val := .教程}}
+                            <div
+                                class="d-flex justify-content-between align-items-start align-items-sm-center mb-4 flex-column flex-sm-row">
+                                <div class="left d-flex align-items-center">
+                                    <div class="icon icon-lg shadow mr-3 text-gray"><i class="fas fa-shopping-basket"></i></div>
+                                    <div class="text">
+                                        <h6 class="mb-0 d-flex align-items-center"> 
+                                            <span><a href='{{urlfor "UserPanelController.SeeGG"}}?id={{$val.Id}}'>{{$val.Title}}</a></span>
+                                            <span class="dot dot-sm ml-2 bg-blue"></span>
+                                        </h6>
+                                        <small class="text-gray"></small>
+                                    </div>
+                                </div>
+                                <div class="right ml-5 ml-sm-0 pl-3 pl-sm-0 text-blue">
+                                    <h5>{{date $val.CreateTime "Y-m-d H:i:s"}}</h5>
+                                </div>
+                            </div>
+                            {{end}}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card mb-5 mb-lg-0">
+                        <div class="card-header">
+                            <h2 class="h6 mb-0 text-uppercase">公告</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+                                {{range $key, $val := .公告}}
+                                <div class="col-lg-12"><a href='{{urlfor "UserPanelController.SeeGG"}}?id={{$val.Id}}'
+                                        class="message card px-5 py-3 mb-4 bg-hover-gradient-primary no-anchor-style">
+                                        <div class="row">
+                                            <div
+                                                class="col-lg-3 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
+                                                {{date $val.CreateTime "Y-m-d H:i:s"}}
+                                            </div>
+                                            <div
+                                                class="col-lg-9 d-flex align-items-center flex-column flex-lg-row text-center text-md-left">
+                                                <p class="mb-0 mt-3 mt-lg-0">{{$val.Title}}</p>
+                                            </div>
+                                        </div>
+                                    </a></div>
+                                {{end}}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
-    <div class="layui-col-xs9"  style="height: 100%;">
-      <iframe id="iframeId" src= '{{urlfor "UserIndexController.Index"}}' frameborder="0" style="height:100%; width:100%"></iframe>
-    </div>
-  </div>
-  
-</div>
-</div> -->
