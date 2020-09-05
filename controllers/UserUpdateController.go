@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"myBrookWeb/enums"
 	"myBrookWeb/models"
+	"myBrookWeb/utils"
 	"reflect"
 
 	"github.com/astaxie/beego"
@@ -68,6 +69,7 @@ func (c *UserUpdateController) UpdataPasswd() {
 		c.jsonResult(enums.JRCodeFailed, msgStr, "")
 	}
 
+	updataPasswd.Passwd = utils.String2md5(updataPasswd.Passwd)
 	if updataPasswd.Passwd != c.curUser.Passwd {
 		c.jsonResult(enums.JRCodeFailed, "旧密码错误", "")
 	}

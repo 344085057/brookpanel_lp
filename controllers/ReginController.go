@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"myBrookWeb/enums"
 	"myBrookWeb/models"
+	"myBrookWeb/utils"
 	"reflect"
 	"strings"
 	"time"
@@ -27,6 +28,7 @@ func (c *ReginController) Index() {
 	if c.Ctx.Request.Method == "POST" {
 		UEmail := strings.TrimSpace(c.GetString("UEmail"))
 		UPasswd := strings.TrimSpace(c.GetString("UPasswd"))
+		UPasswd = utils.String2md5(UPasswd)
 		UName := strings.TrimSpace(c.GetString("UName"))
 		token := strings.TrimSpace(c.GetString("token"))
 		if token == "" {

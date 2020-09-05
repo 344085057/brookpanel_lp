@@ -42,7 +42,7 @@ func (c *LoginController) Index() {
 
 		userEmail := strings.TrimSpace(c.GetString("UEmail"))
 		userPasswd := strings.TrimSpace(c.GetString("UPasswd"))
-
+		userPasswd = utils.String2md5(userPasswd)
 		// if len(username) == 0 || len(userpwd) == 0 {
 		// 	c.jsonResult(enums.JRCodeFailed, "用户名和密码不正确", s)
 		// }
