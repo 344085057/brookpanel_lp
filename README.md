@@ -64,7 +64,7 @@ https://github.com/pingProMax/brookserver
 
 ### 说明
 
-**默认管理员账号admin@gmail.com 密码：123456**
+**默认管理员账号:admin@gmail.com 密码：123456**
 
 **注意数据库中的lp_sys表 请更改s_value中的值**
 
