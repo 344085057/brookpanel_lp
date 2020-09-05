@@ -62,7 +62,7 @@ brookpanel_lp
 
 https://github.com/pingProMax/brookserver
 
-###说明
+### 说明
 以上步骤无特殊说明，需必做，否则跑不起来
 
 后端端口范围 1024-60000 因此这个项目的用户量最大为 60000-1024
