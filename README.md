@@ -75,8 +75,13 @@ https://github.com/pingProMax/brookserver
 ### 站在巨人的肩上
 
 BeeGo: https://github.com/astaxie/beego
+
 Brook: https://github.com/txthinking/brook
+
 Jquery
+
 Bootstrap
+
 Mysql
+
 Redis
