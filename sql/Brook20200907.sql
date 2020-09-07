@@ -4,7 +4,7 @@
  Source Server         : brook
  Source Server Type    : MySQL
  Source Server Version : 50727
- Source Host           : 122.112.204.106:3306
+ Source Host           : 
  Source Schema         : MyBrookData
 
  Target Server Type    : MySQL
