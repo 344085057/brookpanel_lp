@@ -25,7 +25,7 @@ func (c *LoginController) Index() {
 		ipStrArr := make([]string, 0)
 
 		if err := utils.GetCache(ip, &ipStrArr); err != nil { //获取ip数组
-			utils.SetCache(ip, ipStrArr, 0) // 设置缓存
+			utils.SetCache(ip, ipStrArr, 9999999) // 设置缓存
 		}
 		loginErrorNum, err := beego.AppConfig.Int("sys_config::login_error_num") // 获取登录错误限制次数
 		if err != nil {
