@@ -28,6 +28,13 @@ func (c *ReginController) Index() {
 	if c.Ctx.Request.Method == "POST" {
 		UEmail := strings.TrimSpace(c.GetString("UEmail"))
 		UPasswd := strings.TrimSpace(c.GetString("UPasswd"))
+		ProxyPasswd := strings.TrimSpace(c.GetString("ProxyPasswd"))
+		if UPasswd == "" {
+			c.jsonResult(enums.JRCodeFailed, "请输入登录密码", "")
+		}
+		if UPasswd == ProxyPasswd {
+			c.jsonResult(enums.JRCodeFailed, "密码和连接密码不能重复", "")
+		}
 		UPasswd = utils.String2md5(UPasswd)
 		UName := strings.TrimSpace(c.GetString("UName"))
 		token := strings.TrimSpace(c.GetString("token"))
@@ -52,8 +59,7 @@ func (c *ReginController) Index() {
 		if tokenResponseMap["success"].(bool) == false {
 			c.jsonResult(enums.JRCodeFailed, "远程人机身份验证失败", "")
 		}
-
-		u := models.LpBrookUserByRegin{UEmail: UEmail, UPasswd: UPasswd, UName: UName}
+		u := models.LpBrookUserByRegin{UEmail: UEmail, UPasswd: UPasswd, UName: UName, ProxyPasswd: ProxyPasswd}
 
 		valid := validation.Validation{}
 		b, _ := valid.Valid(&u)
@@ -83,13 +89,19 @@ func (c *ReginController) Index() {
 		if user == nil {
 			port := models.UPortIsZy() //获取端口
 
+			reginMoney, err := beego.AppConfig.Int("regin::regin_money") // 获取登录错误限制次数
+
+			fmt.Println(reginMoney, err)
 			lpBrookUser := models.LpBrookUser{
-				Name:       UName,
-				Passwd:     UPasswd,
-				Email:      UEmail,
-				Port:       port,
-				IsAdmin:    0,
-				ExpireTime: time.Now(),
+				Name:        UName,
+				Passwd:      UPasswd,
+				Email:       UEmail,
+				Port:        port,
+				IsAdmin:     0,
+				ExpireTime:  time.Now(),
+				ProxyPasswd: ProxyPasswd,
+				ReginIp:     ip,
+				Money:       reginMoney,
 			}
 			//数据库添加
 			// var uid int64
@@ -97,26 +109,6 @@ func (c *ReginController) Index() {
 				// uid = id
 				c.jsonResult(enums.JRCodeFailed, "注册异常", err.Error())
 			}
-			//为刚刚注册的用开启服务
-			// lpBrookServer, errr := models.GetLpBrookAll(0) //获取可用服务器
-			// if errr != nil {
-			// 	c.jsonResult(enums.JRCodeSucc, "注册成功，但服务获取失败请联系管理员:(", errr.Error())
-			// }else {
-			// 	for _, v := range lpBrookServer {
-			// 		//http请求
-			// 		req := httplib.Get("http://" + v.Ip + ":60001/remote/startservice")
-
-			// 		o := orm.NewOrm()
-			// 		sysMap := make(orm.Params)
-			// 		o.Raw("SELECT s_name,s_value FROM lp_sys").RowsToMap(&sysMap, "s_name", "s_value")
-
-			// 		req.Param("remote_u", sysMap["remote_u"].(string))
-			// 		req.Param("remote_p", sysMap["remote_p"].(string))
-
-			// 		req.Param("uid", strconv.FormatInt(uid, 10))
-			// 		fmt.Println(req.String())
-			// 	}
-			// }
 
 			//获取用户信息
 			c.jsonResult(enums.JRCodeSucc, "注册成功", "")

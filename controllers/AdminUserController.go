@@ -6,8 +6,8 @@ import (
 	"myBrookWeb/models"
 	"myBrookWeb/utils"
 
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/httplib"
-	"github.com/astaxie/beego/orm"
 )
 
 //AdminUserController 用户管理
@@ -98,12 +98,11 @@ func (c *AdminUserController) Del() {
 			//http请求
 			req := httplib.Get("http://" + v.Ip + ":60001/remote/UpdataServicePasswd")
 
-			o := orm.NewOrm()
-			sysMap := make(orm.Params)
-			o.Raw("SELECT s_name,s_value FROM lp_sys").RowsToMap(&sysMap, "s_name", "s_value")
+			remoteU := beego.AppConfig.String("remote::remote_u")
+			remoteP := beego.AppConfig.String("remote::remote_p")
 
-			req.Param("remote_u", sysMap["remote_u"].(string))
-			req.Param("remote_p", sysMap["remote_p"].(string))
+			req.Param("remote_u", remoteU)
+			req.Param("remote_p", remoteP)
 
 			req.Param("user_id", fmt.Sprintf("%v", id))
 			fmt.Println(req.String())

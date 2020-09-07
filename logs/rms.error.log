@@ -1068,3 +1068,115 @@
 2020/09/05 14:52:38.952 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
 2020/09/05 14:52:48.557 [E]  Connect to the redis host 127.0.0.1:6379 failed
 2020/09/05 14:52:48.557 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:13:28.497 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:13:28.498 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:16:16.870 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:16:16.870 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:22:02.696 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:22:02.697 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:22:35.408 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:22:35.408 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:22:49.901 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:22:49.901 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:22:58.378 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:22:58.378 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:25:42.672 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:25:42.674 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:25:48.540 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:25:48.540 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:25:51.796 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:25:51.796 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:28:27.734 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:28:27.734 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:28:37.962 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:28:37.962 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 09:29:25.909 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 09:29:25.909 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 10:40:55.205 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 10:40:55.205 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 10:41:03.066 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 10:41:03.066 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 10:50:58.423 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 10:50:58.423 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 11:40:25.580 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 11:40:25.580 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 11:46:03.379 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 11:46:03.379 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 11:46:16.425 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 11:46:16.425 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 11:53:34.334 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 11:53:34.335 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 11:54:16.523 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 11:54:16.523 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 11:54:58.480 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 11:54:58.480 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 11:55:32.639 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 11:55:32.639 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 11:55:51.422 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 11:55:51.422 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 11:59:28.407 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 11:59:28.407 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:00:42.514 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:00:42.514 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:01:56.272 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:01:56.272 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:02:32.966 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:02:32.966 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:03:06.929 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:03:06.929 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:04:24.891 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:04:24.892 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:04:39.376 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:04:39.376 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:06:13.212 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:06:13.212 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:09:21.929 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:09:21.929 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:09:32.014 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:09:32.014 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:13:12.688 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:13:12.688 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:13:22.810 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:13:22.810 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:13:47.785 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:13:47.785 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:14:50.258 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:14:50.258 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:14:53.144 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:14:53.144 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:15:49.172 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:15:49.172 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:21:01.759 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:21:01.759 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:21:46.212 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:21:46.212 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:22:19.106 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:22:19.107 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:26:02.804 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:26:02.804 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:26:40.777 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:26:40.777 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:29:51.709 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:29:51.710 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:31:00.695 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:31:00.695 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:32:33.525 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:32:33.525 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:33:25.239 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:33:25.239 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:38:18.272 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:38:18.272 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:39:30.520 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:39:30.520 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:40:46.585 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:40:46.586 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:40:49.393 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:40:49.394 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:40:56.761 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:40:56.761 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:41:09.124 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:41:09.124 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:42:29.438 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:42:29.438 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 12:45:00.600 [E]  Connect to the redis host 127.0.0.1:6379 failed
+2020/09/07 12:45:00.600 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.

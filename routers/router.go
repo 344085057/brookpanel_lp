@@ -76,8 +76,10 @@ func init() {
 	beego.Router("/user/userupdate", &controllers.UserUpdateController{}, "*:Index")
 	//用户更新密码api
 	beego.Router("/user/updatepasswd", &controllers.UserUpdateController{}, "Post:UpdataPasswd")
+	//用户更新连接密码api
+	beego.Router("/user/updateporxypasswd", &controllers.UserUpdateController{}, "Post:UpdataPorxyPasswd")
 	//用户修改端口api
-	beego.Router("/user/updateport", &controllers.UserUpdateController{}, "Post:UpdataPort")
+	// beego.Router("/user/updateport", &controllers.UserUpdateController{}, "Post:UpdataPort")
 	//用户退出登录
 	beego.Router("/user/logout", &controllers.UserUpdateController{}, "*:Logout")
 

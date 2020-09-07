@@ -1,7 +1,11 @@
+<script src="/static/js/chart.js/Chart.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script> -->
+
+
 <script>
     $(function () {
-        var violet = '#DF99CA',red = '#F0404C',green = '#7CF29C',blue = '#4680ff';
-        
+        var violet = '#DF99CA', red = '#F0404C', green = '#7CF29C', blue = '#4680ff';
+
         // ------------------------------------------------------- //
         // Charts Gradients
         // ------------------------------------------------------ //
@@ -13,14 +17,16 @@
         var gradient2 = ctx1.createLinearGradient(10, 0, 150, 300);
         gradient2.addColorStop(0, 'rgba(252, 117, 176, 0.84)');
         gradient2.addColorStop(1, 'rgba(250, 199, 106, 0.92)');
+
+
         // ------------------------------------------------------- //
         // Line Chart
         // ------------------------------------------------------ //
-        var LINECHARTEXMPLE   = $('#lineChartExample');
+        var LINECHARTEXMPLE = $('#lineChartExample');
         var lineChartExample = new Chart(LINECHARTEXMPLE, {
             type: 'line',
             options: {
-                legend: {labels:{fontColor:"#777", fontSize: 12}},
+                legend: { labels: { fontColor: "#777", fontSize: 12 } },
                 scales: {
                     xAxes: [{
                         display: true,
@@ -30,10 +36,7 @@
                     }],
                     yAxes: [{
                         display: true,
-                        ticks: {
-                            max: 100,
-                            min: 20
-                        },
+                        
                         gridLines: {
                             color: '#fff'
                         }
@@ -41,36 +44,34 @@
                 },
             },
             data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Dec", "Dec", "Dec"],
+                labels: [{{range $index, $commodity := .周使用统计}}{{range $key, $val := $commodity}} "{{$key}}",{{end}}{{end}} ],
                 datasets: [
                     {
-                        label: "Data Set One",
+                        label: "使用流量",
                         fill: true,
                         lineTension: 0.3,
                         backgroundColor: gradient1,
-                        borderColor: 'rgba(210, 114, 181, 0.91)',
+                        borderColor: 'rgba(210, 114, 181, 0.9)',
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
                         borderJoinStyle: 'miter',
                         borderWidth: 2,
                         pointBorderColor: gradient1,
-                        pointBackgroundColor: "#fff",
+                        pointBackgroundColor: "red",
                         pointBorderWidth: 2,
                         pointHoverRadius: 5,
-                        pointHoverBackgroundColor: gradient1,
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
+                        pointHoverBorderColor: "rgba(255,0,0,1)",
+                        pointHoverBorderWidth: 5,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [0, 50, 33, 71, 49, 55, 35, 40, 30, 50, 25, 40],
-                        spanGaps: false
+                        data: [{{range $index, $commodity := .周使用统计}}{{range $key, $val := $commodity}} "{{$val}}",{{end}}{{end}} ],
+                        spanGaps: false,
                     }
                 ]
             }
         });
 
-            
 
     });
 

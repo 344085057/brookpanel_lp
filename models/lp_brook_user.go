@@ -6,22 +6,25 @@ import (
 	"myBrookWeb/utils"
 	"time"
 
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/httplib"
 	"github.com/astaxie/beego/orm"
 )
 
 //LpBrookUser 用户
 type LpBrookUser struct {
-	Id         int       `orm:"column(u_id);auto"`
-	Email      string    `orm:"column(u_email);size(255)" description:"邮箱" valid:"Email; MaxSize(50)"`
-	Name       string    `orm:"column(u_name);size(255)" description:"用户名" valid:"Range(2, 20)"`
-	Passwd     string    `orm:"column(u_passwd);size(255)" description:"密码" valid:"Range(6, 20)"`
-	Port       int       `orm:"column(u_port);size(255)" description:"端口"`
-	Flow       float64   `orm:"column(u_flow);digits(40);decimals(5)" description:"剩余流量"`
-	IsAdmin    int       `orm:"column(u_is_admin)" description:"是否是管理员 0普通用户/1管理员/-1停用"`
-	ExpireTime time.Time `orm:"column(expire_time);type(timestamp);" description:"vip到期时间"`
-	FlowTotal  float64   `orm:"column(u_flow_total);digits(40);decimals(5)" description:"总使用流量"`
-	Money      int       `orm:"column(u_money)" description:"金币 100 = 1元"`
+	Id          int       `orm:"column(u_id);auto"`
+	Email       string    `orm:"column(u_email);size(255)" description:"邮箱" valid:"Email; MaxSize(50)"`
+	Name        string    `orm:"column(u_name);size(255)" description:"用户名" valid:"Range(2, 20)"`
+	Passwd      string    `orm:"column(u_passwd);size(255)" description:"密码" valid:"Length(32)"`
+	Port        int       `orm:"column(u_port);size(255)" description:"端口"`
+	Flow        float64   `orm:"column(u_flow);digits(40);decimals(5)" description:"剩余流量"`
+	IsAdmin     int       `orm:"column(u_is_admin)" description:"是否是管理员 0普通用户/1管理员/-1停用"`
+	ExpireTime  time.Time `orm:"column(expire_time);type(timestamp);" description:"vip到期时间"`
+	FlowTotal   float64   `orm:"column(u_flow_total);digits(40);decimals(5)" description:"总使用流量"`
+	Money       int       `orm:"column(u_money)" description:"金币"`
+	ProxyPasswd string    `orm:"column(u_proxy_passwd)" description:"代理连接密码"`
+	ReginIp     string    `orm:"column(r_ip)" description:"注册ip"`
 	// TableTime  time.Time `orm:"column(table_time);type(datetime);auto_now" description:"直接修改表的日期"`
 	CreateTime time.Time `orm:"column(create_time);type(datetime);auto_now_add" description:"创建日期"`
 	UpdateTime time.Time `orm:"column(update_time);type(timestamp);auto_now" description:"更新日期"`
@@ -30,23 +33,32 @@ type LpBrookUser struct {
 //LpBrookUserByLogin 用户登录
 type LpBrookUserByLogin struct {
 	UEmail  string `orm:"column(u_email);size(255)" description:"邮箱" valid:"Email; MaxSize(50)"`
-	UPasswd string `orm:"column(u_passwd);size(255)" description:"密码" valid:"MinSize(6);MaxSize(20)"`
+	UPasswd string `orm:"column(u_passwd);size(255)" description:"密码" valid:"Length(32)"`
 }
 
 //LpBrookUserByRegin 用户注册
 type LpBrookUserByRegin struct {
-	UEmail  string `orm:"column(u_email);size(255)" description:"邮箱" valid:"Email; MaxSize(50)"`
-	UPasswd string `orm:"column(u_passwd);size(255)" description:"密码" valid:"MinSize(6);MaxSize(20)"`
-	UName   string `orm:"column(u_name);size(255)" description:"名称" valid:"MinSize(2);MaxSize(20)"`
+	UEmail      string `orm:"column(u_email);size(255)" description:"邮箱" valid:"Email; MaxSize(50)"`
+	UPasswd     string `orm:"column(u_passwd);size(255)" description:"密码" valid:"Length(32)"`
+	UName       string `orm:"column(u_name);size(255)" description:"名称" valid:"MinSize(2);MaxSize(20)"`
+	ProxyPasswd string `orm:"column(u_proxy_passwd)" description:"代理连接密码" valid:"MinSize(6);MaxSize(20)"`
 }
 
 //LpBrookUserByUpdataPasswd 用户修改密码
 type LpBrookUserByUpdataPasswd struct {
-	Passwd    string `json:"passwd" description:"旧密码" valid:"MinSize(6);MaxSize(20)"`
-	NewPasswd string `json:"newPasswd"  description:"新密码" valid:"MinSize(6);MaxSize(20)"`
+	Passwd      string `description:"旧密码" valid:"Length(32)"`
+	ProxyPasswd string `description:"代理连接密码" valid:"MinSize(6);MaxSize(20)"`
+	NewPasswd   string `description:"新密码" valid:"Length(32)"`
 }
 
-//LpBrookUserByUpdataPasswd 用户修改密码
+//LpBrookUserByUpdataPasswd 用户修改连接密码
+type LpBrookUserByUpdataProxyPasswd struct {
+	Passwd         string `description:"登录密码" valid:"Length(32)"`
+	ProxyPasswd    string `description:"连接密码" valid:"MinSize(6);MaxSize(20)"`
+	NewProxyPasswd string `description:"新连接密码" valid:"MinSize(6);MaxSize(20)"`
+}
+
+//LpBrookUserByUpdataPort 修改端口
 type LpBrookUserByUpdataPort struct {
 	Port int `json:"port" description:"端口" valid:"Min(1024);Max(60000)"`
 }
@@ -128,6 +140,21 @@ func UpdataNewPasswdByUserID(id int, newPasswd string) (err error) {
 		return err
 	}
 
+	return nil
+}
+
+//UpdataNewProxyPasswdByUserID 根据id 更新连接密码
+func UpdataNewProxyPasswdByUserID(id int, newProxyPasswd string) (err error) {
+	o := orm.NewOrm()
+	user := LpBrookUser{
+		Id:          id,
+		ProxyPasswd: newProxyPasswd,
+	}
+
+	if _, err = o.Update(&user, "ProxyPasswd"); err != nil {
+		return err
+	}
+
 	lpBrookServer, errr := GetLpBrookAll(0) //获取可用服务器
 	if errr != nil {
 		return err
@@ -136,12 +163,11 @@ func UpdataNewPasswdByUserID(id int, newPasswd string) (err error) {
 			//http请求
 			req := httplib.Get("http://" + v.Ip + ":60001/remote/UpdataServicePasswd")
 
-			o := orm.NewOrm()
-			sysMap := make(orm.Params)
-			o.Raw("SELECT s_name,s_value FROM lp_sys").RowsToMap(&sysMap, "s_name", "s_value")
+			remoteU := beego.AppConfig.String("remote::remote_u")
+			remoteP := beego.AppConfig.String("remote::remote_p")
 
-			req.Param("remote_u", sysMap["remote_u"].(string))
-			req.Param("remote_p", sysMap["remote_p"].(string))
+			req.Param("remote_u", remoteU)
+			req.Param("remote_p", remoteP)
 
 			req.Param("user_id", fmt.Sprintf("%v", id))
 			fmt.Println(req.String())

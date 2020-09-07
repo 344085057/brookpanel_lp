@@ -18,7 +18,7 @@ brookpanel_lp
 		不会请Google
 ```
 
-2.安装Redis 不安装的话也可以 登录错误次数限制功能用不了
+2.安装Redis(并且开启远程访问) 不安装的话也可以 登录错误次数限制功能用不了和流量使用历史记录
 
 ```linux
 		不会请Google
@@ -40,9 +40,17 @@ brookpanel_lp
 
 5.1.配置mysql(通过步骤1获取信息)
 
-5.2.配置recaptcha v2验证(通过步骤4获取信息)
+5.2.配置redis(通过步骤2获取信息)
 
-5.3.配置nginx （经供参考）
+5.3.配置remote(随机输入即可)
+
+5.4.配置regin_money(注册时默认金币)
+
+5.5.配置appname(站点名称) 等等...
+
+5.6.配置recaptcha v2验证(通过步骤4获取信息)
+
+5.7.配置nginx （经供参考）
 
 ```nginx
 	location / {
@@ -64,9 +72,7 @@ https://github.com/pingProMax/brookserver
 
 ### 说明
 
-**默认管理员账号:admin@gmail.com 密码：123456**
-
-**注意数据库中的lp_sys表 请更改s_value中的值**
+**默认管理员账号:admin@gmail.com 密码：123456 连接密码：brookadmin**
 
 
 以上步骤无特殊说明，需必做，否则跑不起来

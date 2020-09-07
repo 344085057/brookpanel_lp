@@ -3,14 +3,19 @@
     //UpdataPasswd 修改密码
     function UpdataPasswd(){
         openLogin()
-        let passwd = $("#passwd").val()
-        let newPasswd = $("#newPasswd").val()
-        if (passwd == "") {
-            msg("请输入旧密码:(",2)
+        let upPasswdData = $('#upPasswd').serializeArray()
+        let upPasswdDataObj = serializeArrayToObj(upPasswdData)
+
+        if (upPasswdDataObj.Passwd == "") {
+            msg("请输入当前登录密码:(",2)
             return
         }
-        if (newPasswd == "") {
-            msg("请输入新密码:(",2)
+        if (upPasswdDataObj.ProxyPasswd == "") {
+            msg("请输入当前连接密码:(",2)
+            return
+        }
+        if (upPasswdDataObj.NewPasswd == "") {
+            msg("请输入新登录密码:(",2)
             return
         } 
         
@@ -18,11 +23,54 @@
         $.ajax({
             type: "post",
             url: '{{urlfor "UserUpdateController.UpdataPasswd"}}',
-            data: JSON.stringify({"passwd":passwd,"newPasswd":newPasswd}),
+            data: upPasswdDataObj,
             headers: {
                 
             },
-            contentType: "application/json;charset=utf-8",
+            // contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function(response){
+                if (response.code == 0){
+                    msg("修改成功:)",0)
+                }else{ //失败
+                    msg(response.msg+"-"+response.obj,2)
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown)
+                msg("请求失败，请重新登录:(",3)
+            }
+        });
+    }
+
+    //UpdataPorxyPasswd 修改连接密码
+    function UpdataPorxyPasswd(){
+        openLogin()
+        let upPasswdData = $('#upPorxyPasswd').serializeArray()
+        let upPasswdDataObj = serializeArrayToObj(upPasswdData)
+
+        if (upPasswdDataObj.Passwd == "") {
+            msg("请输入当前登录密码:(",2)
+            return
+        }
+        if (upPasswdDataObj.ProxyPasswd == "") {
+            msg("请输入当前连接密码:(",2)
+            return
+        }
+        if (upPasswdDataObj.NewProxyPasswd == "") {
+            msg("请输入新连接密码:(",2)
+            return
+        } 
+        
+
+        $.ajax({
+            type: "post",
+            url: '{{urlfor "UserUpdateController.UpdataPorxyPasswd"}}',
+            data: upPasswdDataObj,
+            headers: {
+                
+            },
+            // contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function(response){
                 if (response.code == 0){

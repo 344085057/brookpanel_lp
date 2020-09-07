@@ -3,24 +3,55 @@
     <section class="py-5">
       <div class="row">
         <!-- Basic Form-->
-        <div class="col-lg-12 mb-5">
+        <div class="col-lg-6 mb-5">
           <div class="card">
             <div class="card-header">
               <h3 class="h6 text-uppercase mb-0">修改密码</h3>
             </div>
             <div class="card-body">
-              <p>修改密码的同时会修改服务密码.</p>
-              <form>
+              <p>修改登录密码.</p>
+              <form id="upPasswd">
                 <div class="form-group">
-                  <label class="form-control-label text-uppercase">老密码</label>
-                  <input type="text" id="passwd" placeholder="Security Code" class="form-control">
+                  <label class="form-control-label text-uppercase">当前登录密码</label>
+                  <input type="text" name="Passwd" placeholder="Security Code" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label text-uppercase">当前连接密码</label>
+                  <input type="text" name="ProxyPasswd" placeholder="Security Code" class="form-control">
                 </div>
                 <div class="form-group">       
-                  <label class="form-control-label text-uppercase">新密码</label>
-                  <input type="password" id="newPasswd" placeholder="Password" class="form-control">
+                  <label class="form-control-label text-uppercase">新登录密码</label>
+                  <input type="password" name="NewPasswd" placeholder="Password" class="form-control">
                 </div>
                 <div class="form-group">       
                   <button type="button" onclick="UpdataPasswd()" class="btn btn-primary">修改</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-5">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="h6 text-uppercase mb-0">修改连接密码</h3>
+            </div>
+            <div class="card-body">
+              <p>修改连接密码.</p>
+              <form id="upPorxyPasswd">
+                <div class="form-group">
+                  <label class="form-control-label text-uppercase">当前连接密码</label>
+                  <input type="text" name="ProxyPasswd" placeholder="Security Code" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label text-uppercase">当前登录密码</label>
+                  <input type="text" name="Passwd" placeholder="Security Code" class="form-control">
+                </div>
+                <div class="form-group">       
+                  <label class="form-control-label text-uppercase">新连接密码</label>
+                  <input type="password" name="NewProxyPasswd" placeholder="Password" class="form-control">
+                </div>
+                <div class="form-group">       
+                  <button type="button" onclick="UpdataPorxyPasswd()" class="btn btn-primary">修改</button>
                 </div>
               </form>
             </div>
