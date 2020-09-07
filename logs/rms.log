@@ -1186,3 +1186,21 @@
 2020/09/07 12:55:29.784 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
 2020/09/07 12:55:32.003 [E]  Connect to the redis host 127.0.0.1:6379 failed
 2020/09/07 12:55:32.004 [E]  dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it.
+2020/09/07 13:49:23.926 [E]  Connect to the redis host 46.29.163.183:6379 failed
+2020/09/07 13:49:23.926 [E]  dial tcp 46.29.163.183:6379: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020/09/07 13:51:30.763 [E]  Connect to the redis host 46.29.163.183:6379 failed
+2020/09/07 13:51:30.763 [E]  dial tcp 46.29.163.183:6379: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020/09/07 13:51:41.019 [E]  Connect to the redis host 46.29.163.183:6379 failed
+2020/09/07 13:51:41.019 [E]  NOAUTH Authentication required.
+2020/09/07 13:51:48.237 [E]  Connect to the redis host 46.29.163.183:6379 failed
+2020/09/07 13:51:48.238 [E]  NOAUTH Authentication required.
+2020/09/07 13:52:05.022 [E]  Connect to the redis host 46.29.163.183:6379 failed
+2020/09/07 13:52:05.022 [E]  NOAUTH Authentication required.
+2020/09/07 13:54:33.315 [E]  Connect to the redis host 46.29.163.183:6379 failed
+2020/09/07 13:54:33.315 [E]  NOAUTH Authentication required.
+2020/09/07 13:57:03.156 [E]  Connect to the redis host 46.29.163.183:6379 failed
+2020/09/07 13:57:03.156 [E]  dial tcp 46.29.163.183:6379: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020/09/07 13:57:30.367 [E]  Connect to the redis host 46.29.163.183:6379 failed
+2020/09/07 13:57:30.367 [E]  NOAUTH Authentication required.
+2020/09/07 13:57:34.766 [E]  Connect to the redis host 46.29.163.183:6379 failed
+2020/09/07 13:57:34.766 [E]  NOAUTH Authentication required.
