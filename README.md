@@ -1,3 +1,5 @@
+#暂停使用 brook出现断流情况  暂不维护
+
 # brookpanel_lp
 brookpanel_lp
 
